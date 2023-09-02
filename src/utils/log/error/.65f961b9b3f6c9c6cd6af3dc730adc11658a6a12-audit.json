@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 5
+    },
+    "auditLog": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\.65f961b9b3f6c9c6cd6af3dc730adc11658a6a12-audit.json",
+    "files": [
+        {
+            "date": 1693611699984,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-09-01.log",
+            "hash": "c84c7cdb1e1db55fdc69ab8f51dbd4faa241426e789c156922db3bf0bbc37012"
+        }
+    ],
+    "hashType": "sha256"
+}
