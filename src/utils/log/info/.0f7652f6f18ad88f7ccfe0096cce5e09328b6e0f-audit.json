@@ -6,9 +6,24 @@
     "auditLog": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\info\\.0f7652f6f18ad88f7ccfe0096cce5e09328b6e0f-audit.json",
     "files": [
         {
-            "date": 1693611699965,
-            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-09-01.log",
-            "hash": "63ad481840112039827a477447ba2ba444b724b45b1d19825cbfac1814cadd18"
+            "date": 1693869958234,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-09-04.log",
+            "hash": "3361a3a372a5d52cfa4b785ae7e75a23b37e6258e861ace22d0bfe78c5ed0732"
+        },
+        {
+            "date": 1694042123336,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-09-06.log",
+            "hash": "951175cf33ccb49c17e71652348a8a7fe444869022c1e5a789a8e73f0bff9203"
+        },
+        {
+            "date": 1694127182410,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-09-07.log",
+            "hash": "1fefc5ff5af74583807b3b4c78d215be0489bcb533b1c4d0e5e011a549644878"
+        },
+        {
+            "date": 1694282360323,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-09-09.log",
+            "hash": "db6bb5382b44ee1483fec6e8cd5a8f93591b4a24ada710d67be43d1834e7da46"
         }
     ],
     "hashType": "sha256"
