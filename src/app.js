@@ -8,7 +8,7 @@ const app            = express();
 const jwt            = require("jsonwebtoken");
 const moment         = require('moment');
 const validateToken  = require('./routes/middlaware/middlaware')
-// const {logger,logger_error} = require('./utils/logger')
+const {log_info}     = require('./utils/logger')
 
 require('dotenv').config();
 app.use(useragent.express());
@@ -36,23 +36,25 @@ app.use(function (req, res, next) {
       return res.status(200).end();
     }
         
-    if ( req.path == '/api/auth/login') {
+   if ( req.path            === '/api/auth/login' ||
+        req.path.slice(0,7) === '/public') {
       return next()
     }
-    
+
     // Next middleware
-    const token = req.headers.authorization
-    
+    const token = req.headers.authorization    
     console.log("Authorization:", token)
     console.log(req.path)
 
     const ip         = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     var direccion_ip = ip.replace("::ffff:","");
-    logger.info(`ruta: ${req.path} - ${direccion_ip} - [${moment().format('DD-MM-YYYY HH:mm')}]`)
+    log_info.info(`ruta: ${req.path} - ${direccion_ip} - [${moment().format('DD-MM-YYYY HH:mm')}]`)
 
     app.use('/',validateToken);   
     next();
 });
 
 app.use('/', routes());
+app.use('/public',express.static(process.env.FILESTORE));
+
 module.exports = app;

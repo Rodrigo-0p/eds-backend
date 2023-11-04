@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 5
+    },
+    "auditLog": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\.68d3e8839d483f3ac18cddc512bd16c66c6c0294-audit.json",
+    "files": [
+        {
+            "date": 1698705492684,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-10-30.log",
+            "hash": "63455bf813762b7449607a88be9a0841bf6110a5e53e01a7994d83806c749f10"
+        },
+        {
+            "date": 1698877779927,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-11-01.log",
+            "hash": "11042d944e2cc5cc2dee272838a8aa86448c57e22d2f425e5e347d52cfe6b42b"
+        },
+        {
+            "date": 1699051234445,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-11-03.log",
+            "hash": "783723bf5a79cd968b6c5033aab0c1584f5c4636b35971d4c01de2b8ac029151"
+        },
+        {
+            "date": 1699103099297,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2023-11-04.log",
+            "hash": "f9a760014be87874a249248e75ed056d26861971cf9ce2a145b61c5d4dbb3d5e"
+        }
+    ],
+    "hashType": "sha256"
+}

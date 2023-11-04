@@ -6,24 +6,24 @@
     "auditLog": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\.65f961b9b3f6c9c6cd6af3dc730adc11658a6a12-audit.json",
     "files": [
         {
-            "date": 1693869958241,
-            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-09-04.log",
-            "hash": "be9df98ab7e6d78aa208c2f58c16ca00bb2c1607d2cc87838c0e3d62168dacaf"
+            "date": 1697494273942,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-10-16.log",
+            "hash": "852c4d266af04d6bac1f65c18d1602b28b5ab7e1b599aa07703dc15fc515504c"
         },
         {
-            "date": 1694042123341,
-            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-09-06.log",
-            "hash": "fa3c8d58f24bf10903fd5c1335ae69df39a650fde87d35ef04bc8077f1e10d0f"
+            "date": 1697669311701,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-10-18.log",
+            "hash": "6af928961ceac087084fd05a999c36138acf158679c3603f43c4dea041dc929e"
         },
         {
-            "date": 1694127182418,
-            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-09-07.log",
-            "hash": "312c0ce1b6a9bcd7badb1ef14b99b02d415c29602b4b53a1c942fc30f654fd1f"
+            "date": 1697832549495,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-10-20.log",
+            "hash": "3eb21a902c35a548e1ad510bc38b682b2dd21a0138875d592ced65e5aca4a1f4"
         },
         {
-            "date": 1694282360329,
-            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-09-09.log",
-            "hash": "c976318ac7357447628b7996765fbf9b165a2540ac52f8701de6ede1adcab7fc"
+            "date": 1697887305513,
+            "name": "C:\\Users\\Rodrigo\\OneDrive\\Escritorio\\eds\\eds-backend\\src\\utils\\log\\error\\error2023-10-21.log",
+            "hash": "eba1893b65b49b687a6377385dd933069edc82d2ab36cee432b0280b19c639ef"
         }
     ],
     "hashType": "sha256"

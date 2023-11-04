@@ -1,7 +1,7 @@
 const jwt   = require('jsonwebtoken');
 
 const verificarToken = (req, res, next)=>{
-const token = req.header('auth-token');
+  const token = req.header('auth-token');
   if(!token) return res.status(200).json({error:true, message:"Acceso denegado"})
   try {
       const verifar = jwt.verify(token,process.env.JW_CLAVE)
