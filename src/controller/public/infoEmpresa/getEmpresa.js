@@ -9,6 +9,7 @@ exports.main = async (req, res, next) => {
      var sql = ` select  c.cod_empresa codigo
                       ,  c.descripcion descripcion
                       ,  c.ruta_logo
+                      , 'EMP' id
                    from  empresas c
                       ,  bs_usuarios u
                   where (c.cod_empresa = :cod_empresa or :cod_empresa is null)
@@ -20,7 +21,7 @@ exports.main = async (req, res, next) => {
     const response = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));
     res.status(200).json(response);
   } catch (e) {
-    log_error.error(`getEmpresa | bsEmpresa ${e}`)
+    log_error.error(`getEmpresa | bsPublic ${e}`)
     console.log(e);
     next();
   }

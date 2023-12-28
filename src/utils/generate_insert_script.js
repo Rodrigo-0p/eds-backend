@@ -47,7 +47,7 @@ const getTableInfo = async(req, table_name) => {
       console.log(error)
   }
 }
-exports.generate_insert = async(req, table_name, data, opcion) => { 
+exports.generate_insert = async(req, table_name, data, opcion = {}) => { 
   var sql = '';
   let content = data.filter( item => item.inserted );
   

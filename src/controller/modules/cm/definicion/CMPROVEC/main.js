@@ -51,7 +51,17 @@ exports.abm = async(req, res, next)=>{
       in_params  : ['MODIFICA_DIAS_ANT'
                    ,'CANT_DIA_ANT']          ,
       out_params : [] ,
+      in_type    : { CANT_DIA_ANT : 'NUMBER'},
       bind_type  : {'CANT_DIA_ANT':'INOUT' } ,
+    },  
+    {
+      campo			 : 'COD_PERSONA'            ,
+      paquete		 : 'EDS_CMPROVEC.'          ,
+      funcion		 : 'VALIDA_COD_PERSONA'     ,
+      in_params  : ['COD_EMPRESA'
+                   ,'COD_PERSONA'
+                   ,'COD_PERSONA_ANT' ]     ,
+      out_params : [],
     },
   ]
 
@@ -88,11 +98,12 @@ exports.abm = async(req, res, next)=>{
       return
     }    
   }
-  
+    
   let datosInsert = await generate_insert(req,'CM_DATOS_PROVEEDORES', content.updateInserData, {COD_USUARIO:`'${cod_usuario}'`, FEC_ALTA:'sysdate'});
   let datosUpdate = await generate_update(req,'CM_DATOS_PROVEEDORES', content.updateInserData, content.aux_updateInserData);
   let datosDelete = await generate_delete(req,'CM_DATOS_PROVEEDORES', content.deleteCab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'CM', paquete:'eds_cmprovec' }); 
  
+
   try {
   var sql =   `
           BEGIN

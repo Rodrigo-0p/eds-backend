@@ -11,13 +11,14 @@ const PostValida = async(sql,params, req)=>{
         // console.log(params)
         
         const response = await db.Open(sql, params, true ,req.headers.authuser, await crypto.decrypt(req.headers.authpass) );
+
         return response;
     } catch (error) {
         log_error.error(`PostValida ${error}`) 
         console.log(error);
     }
 }
-exports.validateCampo = async(content,valida,req)=>{ 
+exports.validateCampo = async(content,valida,req)=>{
     let bandera = false;
     let p_mensaje = "";
     let data;
@@ -150,7 +151,12 @@ exports.validateProcedure = async(content,valida,req)=>{
                 params[in_params[y]] = item[in_params[y]];
             }
             for (let y = 0; y < out_params.length; y++) {
-                params[out_params[y]] = { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 300};
+                if( _.isUndefined( element?.type ) ){
+                    params[out_params[y]] = { dir: oracledb.BIND_OUT, type: element?.out_type?.[out_params[y]] ? oracledb[element?.out_type?.[out_params[y]]] : oracledb.STRING, maxSize: 300};
+                }else{
+                    params[out_params[y]] = { dir: oracledb.BIND_OUT, type: element?.type?.[y] ? oracledb[element.type[y]] : oracledb.STRING, maxSize: 300};
+                }
+                // params[out_params[y]] = { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 300};
             }
             data = await PostValida(sql,params,req);
         }
@@ -270,18 +276,22 @@ exports.validateBooleanFunction = async(content,valida,req)=>{
             sql += `:p_mensaje); :ret := sys.diutil.bool_to_int(ret); END; \n`;
             var params = {};
             for (let y = 0; y < in_params.length; y++) { 
-                if( element?.bind_type?.[in_params[y]] == undefined ){ 
-                    params[in_params[y]] = element?.in_type?.[in_params[y]] == 'NUMBER' ? ValidaNumero(item[in_params[y]]) : `${item[in_params[y]]}`;
+                if( element?.bind_type?.[in_params[y]] === undefined ){                     
+                    params[in_params[y]] = element?.in_type?.[in_params[y]] === 'NUMBER' ? ValidaNumero(item[in_params[y]]) : _.isNull(item[in_params[y]]) ? item[in_params[y]] : `${item[in_params[y]]}`;
+                    // params[in_params[y]] = element?.in_type?.[in_params[y]] === 'NUMBER' ? ValidaNumero(item[in_params[y]]) : _.isNull(item[in_params[y]]) ? '' : `${item[in_params[y]]}`;
                 }else{  
                     params[in_params[y]] = { 
                         dir: oracledb[`BIND_${element?.bind_type?.[in_params[y]]}`], 
                         type: !_.isUndefined(element?.in_type?.[in_params[y]]) ? oracledb[ element?.in_type?.[in_params[y]] ] : oracledb.STRING, 
-                        val: element?.in_type?.[in_params[y]] == 'NUMBER' 
-                            ? _.isNumber( ValidaNumero(item[in_params[y]]) )
-                                ? ValidaNumero( item[in_params[y]] )
-                                : null
-                            : `${item[in_params[y]]}` 
+                        val : element?.in_type?.[in_params[y]] == 'NUMBER' ? _.isNumber( ValidaNumero(item[in_params[y]]) ) ? ValidaNumero( item[in_params[y]] )
+                            : null : _.isNull(item[in_params[y]]) ? item[in_params[y]] : `${item[in_params[y]]}` 
+
+                        // val : element?.in_type?.[in_params[y]] == 'NUMBER' ? _.isNumber( ValidaNumero(item[in_params[y]]) )
+                        //     ? ValidaNumero( item[in_params[y]] )
+                        //     : null
+                        //     : `${item[in_params[y]]}` 
                     };  
+                   
                 }
             }
             for (let y = 0; y < out_params.length; y++) {

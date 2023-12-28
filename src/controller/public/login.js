@@ -18,29 +18,29 @@ exports.AutenticarUsuario = async (req, res, next) => {
           username         = username.toUpperCase();
           let cryptPassword = await crypto.encrypt(password);     
           
-     sql = `   
-          select p.nombre
-               , u.cod_usuario
-               , u.cod_persona
-               , u.cod_grupo
-               , u.cod_empresa
-               , u.estado
-               , e.ruta_logo
-               , e.descripcion desc_empresa
-               , s.cod_sucursal
-               , s.descripcion desc_sucursal
-               , '${cryptPassword}' cryptPass
-          from bs_usuarios  u ,
-               personas     p ,
-               empresas     e ,
-               sucursales   s
-               where u.cod_persona   = p.cod_persona
-               and u.cod_empresa     = e.cod_empresa
-               and u.cod_empresa     = s.cod_empresa
-               and u.cod_sucursal    = s.cod_sucursal
-               and nvl(u.estado,'I') = 'A'
-               and u.cod_usuario     =:cod_usuario`
-          
+     sql = `   select p.nombre
+                    , u.cod_usuario
+                    , u.cod_persona
+                    , u.cod_grupo
+                    , u.cod_empresa
+                    , u.estado
+                    , e.ruta_logo
+                    , e.descripcion desc_empresa
+                    , s.cod_sucursal
+                    , s.descripcion desc_sucursal
+                    , '${cryptPassword}' cryptPass
+               from bs_usuarios  u ,
+                    personas     p ,
+                    empresas     e ,
+                    sucursales   s
+                    where u.cod_persona   = p.cod_persona
+                    and u.cod_empresa     = e.cod_empresa
+                    and u.cod_empresa     = s.cod_empresa
+                    and u.cod_sucursal    = s.cod_sucursal
+                    and nvl(u.estado,'I') = 'A'
+                    and u.cod_usuario     =:cod_usuario
+                    order by s.cod_sucursal asc
+          `          
 
      let response = await conn.Open(sql,{cod_usuario:username},false, username, password);
 
