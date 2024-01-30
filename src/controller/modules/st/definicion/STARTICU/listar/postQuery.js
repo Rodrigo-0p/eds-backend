@@ -8,11 +8,14 @@ exports.main = async (req, res, next)  => {
       , COD_PROVEEDOR_DFLT = ''
       , COD_RUBRO     = ''
       , COD_MARCA     = ''
+      , COD_LINEA     = ''
+      , COD_CATEGORIA = ''
       , COD_GRUPO     = ''
       , COD_IVA       = ''
      } = req.body;
 
-  let content = [{  COD_EMPRESA, COD_PROVEEDOR_DFLT, COD_RUBRO, COD_MARCA, COD_GRUPO, COD_IVA }];
+  let content = [{  COD_EMPRESA, COD_PROVEEDOR_DFLT, COD_RUBRO, COD_MARCA,COD_LINEA,COD_CATEGORIA, COD_GRUPO, COD_IVA }];
+  
   let in_params = content.map( item => { return _.keys(item) });  
   var valida  = [{
     campo       : 'COD_EMPRESA'        ,
@@ -22,6 +25,8 @@ exports.main = async (req, res, next)  => {
     out_params: [   'DESC_PROVEEDOR'
                   , 'DESC_RUBRO'
                   , 'DESC_MARCA'
+                  , 'DESC_LINEA'
+                  , 'DESC_CATEGORIA'
                   , 'DESC_GRUPO'
                   , 'DESC_IVA'
                 ],

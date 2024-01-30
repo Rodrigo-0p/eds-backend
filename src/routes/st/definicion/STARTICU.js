@@ -8,6 +8,8 @@ const brubro      = require('../../../controller/modules/st/definicion/STARTICU/
 const bgrupo      = require('../../../controller/modules/st/definicion/STARTICU/buscador/getGrupo'          );
 const bIva        = require('../../../controller/modules/st/definicion/STARTICU/buscador/getIva'            );
 const bUm         = require('../../../controller/modules/st/definicion/STARTICU/buscador/getUm'             );
+const blinea      = require('../../../controller/modules/st/definicion/STARTICU/buscador/getLinea'          );
+const bCateg      = require('../../../controller/modules/st/definicion/STARTICU/buscador/getSegmento'       );
 
 // VALIDADORES
 const vproveedor  = require('../../../controller/modules/st/definicion/STARTICU/validador/validaProveedor'  );
@@ -16,6 +18,8 @@ const vrubro      = require('../../../controller/modules/st/definicion/STARTICU/
 const vgrupo      = require('../../../controller/modules/st/definicion/STARTICU/validador/validaGrupo'      );
 const vIva        = require('../../../controller/modules/st/definicion/STARTICU/validador/validaIva'        );
 const vUm         = require('../../../controller/modules/st/definicion/STARTICU/validador/validaUm'         );
+const vlinea      = require('../../../controller/modules/st/definicion/STARTICU/validador/validaLinea'      );
+const vcateg      = require('../../../controller/modules/st/definicion/STARTICU/validador/validaSegmento'   );
 
 // LIST      
 const lcab        = require('../../../controller/modules/st/definicion/STARTICU/listar/listCab'             );
@@ -41,6 +45,8 @@ module.exports = function(){
   router.post('/st/starticu/buscar/grupo'     , bgrupo.main       );  
   router.post('/st/starticu/buscar/iva'       , bIva.main         );  
   router.post('/st/starticu/buscar/um'        , bUm.main          );  
+  router.post('/st/starticu/buscar/linea'     , blinea.main       );  
+  router.post('/st/starticu/buscar/segmento'  , bCateg.main       );  
 
   // VALIDADORES
   router.post('/st/starticu/valida/proveedor' , vproveedor.main   );  
@@ -49,6 +55,8 @@ module.exports = function(){
   router.post('/st/starticu/valida/grupo'     , vgrupo.main       );  
   router.post('/st/starticu/valida/iva'       , vIva.main         );    
   router.post('/st/starticu/valida/um'        , vUm.main          );    
-  
+  router.post('/st/starticu/valida/linea'     , vlinea.main       );    
+  router.post('/st/starticu/valida/segmento'  , vcateg.main       );    
+
   return router;
 }

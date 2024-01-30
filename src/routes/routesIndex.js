@@ -17,8 +17,10 @@ const vtclient                  = require('./vt/definicion/VTCLIENT'        );
 const vtvende                   = require('./vt/definicion/VTVENDE'         );
 const vtlispre                  = require('./vt/definicion/VTLISPRE'        );
 
-// STOCK
+// STOCK DEFINICION
 const starticu                  = require('./st/definicion/STARTICU'        );
+// STOCK MOVIMIENTO
+const stentsal                  = require('./st/movimiento/STENTSAL'         );
 
 module.exports = function(){
 
@@ -38,8 +40,10 @@ module.exports = function(){
     router.use( vtvende()       );
     router.use( vtlispre()      );
     
-    //STOCK
+    //STOCK DEFINICION
     router.use( starticu()      );
+    // MOVIMIENTO
+    router.use( stentsal()      );
 
 
     
