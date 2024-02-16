@@ -14,25 +14,23 @@ let in_params    = content.map( item => { return _.keys(item) });
 
 var valida 		 = [{
     campo			 : 'COD_ARTICULO'  ,
-    paquete		 : 'EDS_STENTSAL.' ,
+    paquete		 : 'EDS_STENVIO.' ,
     funcion		 : 'VALIDA_ARTICULO',			
     in_params  : in_params[0],
-    out_params : ['DESC_ARTICULO','COSTO_ULTIMO','COD_UNIDAD_MEDIDA','DESC_UM','IND_MAN_STOCK','NRO_LOTE','FEC_VENCIMIENTO'],
+    out_params : ['DESC_ARTICULO','COSTO_ULTIMO','COD_UNIDAD_MEDIDA','NRO_LOTE','FEC_VENCIMIENTO'],
     out_type   : {'COSTO_ULTIMO':'NUMBER','FEC_VENCIMIENTO':'DATE'}
   }];
   try {
-    var response = await validateBooleanFunction(content, valida, req);	
-    // res.status(200).json(response.data);
-      if(!response.valor){
-        response.data.outBinds.FEC_VENCIMIENTO = response.data.outBinds.FEC_VENCIMIENTO ? moment.utc(response.data.outBinds.FEC_VENCIMIENTO).format('DD/MM/YYYY') : ''
-        res.status(200).json(response.data);
-      }else{
-        res.status(200).json(response.data);
-      }
-
+    var response = await validateBooleanFunction(content, valida, req);	    
+    if(!response.valor){
+      response.data.outBinds.FEC_VENCIMIENTO = response.data.outBinds.FEC_VENCIMIENTO ? moment.utc(response.data.outBinds.FEC_VENCIMIENTO).format('DD/MM/YYYY') : ''
+      res.status(200).json(response.data);
+    }else{
+      res.status(200).json(response.data);
+    }
   } catch (error) {
-    log_error.error(`EDS_STENTSAL: VALIDA_ARTICULO : ${error} `);;
-    console.error('EDS_STENTSAL: VALIDA_ARTICULO   : ',error)
+    log_error.error(`EDS_STENVIO: VALIDA_ARTICULO : ${error} `);;
+    console.error('EDS_STENVIO: VALIDA_ARTICULO   : ',error)
     next()
   }
 }

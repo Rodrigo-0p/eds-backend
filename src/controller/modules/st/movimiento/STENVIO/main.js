@@ -8,17 +8,19 @@ const { generate_insert }       = require('../../../../../utility/generate_inser
 const { generate_delete }       = require('../../../../../utility/generate_delete'  );
 const {validateBooleanFunction} = require('../../../../../utils/validate'           );
 
-exports.getNroEntSal = async (req, res, next) => {
-  var cod_empresa = req.params.cod_empresa;
+exports.getNroComp = async (req, res, next) => {
+  let { cod_empresa, tip_comprobante, ser_comprobante}     = req.params;
   try {
-    var sql = ` select nvl( max(to_number(c.nro_ent_sal) ) , 0 ) + 1 id
-                  from st_entsal_cab c 
-                 where c.cod_empresa =:cod_empresa`;
-    var data = [cod_empresa];
+    var sql = ` select nvl( max(to_number(c.nro_comprobante) ) , 0 ) + 1 id
+                  from st_notas_envio_cab c 
+                 where c.cod_empresa     =:cod_empresa
+                   and c.tip_comprobante =:tip_comprobante
+                   and c.ser_comprobante =:ser_comprobante`;
+    var data = [cod_empresa,tip_comprobante,ser_comprobante];
     const response = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));
     res.status(200).json(response);
   } catch (error) {
-    log_error.error(`getNroEntSal ${error}`)
+    log_error.error(`getNroComprobante ${error}`)
     console.log(error);
     next();
   }
@@ -26,21 +28,20 @@ exports.getNroEntSal = async (req, res, next) => {
 
 // NRO_ORDEN
 exports.getNrOrden = async (req, res, next) => {
-  var cod_empresa     = req.params.cod_empresa;
-  var cod_nro_ent_sal = req.params.cod_nro_ent_sal;
+  let { cod_empresa, tip_comprobante, ser_comprobante, nro_comprobante}     = req.params;
 
   try {
     var sql = ` select nvl( max(to_number(c.nro_orden) ) , 0 ) + 1 id
-                  from st_entsal_det c 
+                  from st_notas_envio_det c 
                   where c.cod_empresa = :cod_empresa
-                    and c.tip_ent_sal = 'AJS'
-                    and c.ser_ent_sal = 'A'
-                    and c.nro_ent_sal = :cod_nro_ent_sal`;
-    var data = [cod_empresa,cod_nro_ent_sal];
+                    and c.tip_comprobante = :tip_comprobante
+                    and c.ser_comprobante = :ser_comprobante
+                    and c.nro_comprobante = :nro_comprobante`;
+    var data = [cod_empresa,tip_comprobante,ser_comprobante,nro_comprobante];
     const response = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));
     res.status(200).json(response);
   } catch (error) {
-    log_error.error(`getNroEntSal ${error}`)
+    log_error.error(`getNroOrden ${error}`)
     console.log(error);
     next();
   }
@@ -58,35 +59,16 @@ exports.main = async(req, res, next)=>{
   var VALIDA_CAB = [
     {
       campo			 : 'COD_SUCURSAL',
-      paquete		 : 'EDS_STENTSAL.',
+      paquete		 : 'EDS_STENVIO.',
       funcion		 : 'VALIDA_SUCURSAL',			
       in_params  : ['COD_EMPRESA','COD_SUCURSAL'],
       out_params : ['DESC_SUCURSAL']  ,
     },{
-      campo			 : 'COD_MOTIVO'  ,
-      paquete		 : 'EDS_STENTSAL.' ,
-      funcion		 : 'VALIDA_MOTIVO'  ,			
+      campo			 : 'COD_MOTIVO',
+      paquete		 : 'EDS_STENVIO.',
+      funcion		 : 'VALIDA_MOTIVOS',			
       in_params  : ['COD_EMPRESA','COD_SUCURSAL','COD_MOTIVO'],
-      out_params : ['DESC_MOTIVO','IND_ENT_SAL','AFECTA_COSTO']  ,
-    },{
-      campo			 : 'COD_SUCURSAL'  ,
-      paquete		 : 'EDS_STENTSAL.' ,
-      funcion		 : 'VALIDA_SUCURSAL'  ,			
-      in_params  : ['COD_EMPRESA','COD_SUCURSAL'],
-      out_params : ['DESC_DEPOSITO']  ,
-    },{
-      campo			 : 'COD_EMPRESA'  ,
-      paquete		 : 'EDS_STENTSAL.' ,
-      funcion		 : 'VALIDA_PROVEEDOR'  ,			
-      in_params  : ['COD_EMPRESA','COD_PROVEEDOR'],
-      out_params : ['DESC_PROVEEDOR']  ,
-    },{
-      campo			 : 'COD_MONEDA'  ,
-      paquete		 : 'EDS_STENTSAL.' ,
-      funcion		 : 'VALIDA_MONEDA'  ,			
-      in_params  : ['COD_MONEDA'],
-      out_params : ['DESC_MONEDA','DECIMALES','TIP_CAMBIO','TIP_CAMBIO_US'],
-      out_type   : { DECIMALES: 'NUMBER',TIP_CAMBIO:'NUMBER',TIP_CAMBIO_US:'NUMBER'},
+      out_params : ['DESC_MOTIVO'],
     }
   ]
 
@@ -101,10 +83,10 @@ exports.main = async(req, res, next)=>{
   //  VALIDA DETALLE
   var VALIDA_DET = [{
     campo			 : 'COD_ARTICULO'  ,
-    paquete		 : 'EDS_STENTSAL.' ,
+    paquete		 : 'EDS_STENVIO.' ,
     funcion		 : 'VALIDA_ARTICULO',			
     in_params  : ['COD_EMPRESA','COD_SUCURSAL','COD_ARTICULO'],
-    out_params : ['DESC_ARTICULO','COSTO_ULTIMO','COD_UNIDAD_MEDIDA','DESC_UM','IND_MAN_STOCK','NRO_LOTE','FEC_VENCIMIENTO'],
+    out_params : ['DESC_ARTICULO','COSTO_ULTIMO','COD_UNIDAD_MEDIDA','NRO_LOTE','FEC_VENCIMIENTO'],
     out_type   : {'COSTO_ULTIMO':'NUMBER','FEC_VENCIMIENTO':'DATE'}
   }]
 
@@ -123,33 +105,33 @@ exports.main = async(req, res, next)=>{
   }
 
   // CAB
-  let NameTableCab   = 'ST_ENTSAL_CAB';
+  let NameTableCab   = 'ST_NOTAS_ENVIO_CAB';
 	let tableCab       = tableData.find( item => item.table === NameTableCab);
   let datosInserCab  = await generate_insert(NameTableCab, content.updateInserData, {COD_EMPRESA:cod_empresa,FEC_ALTA:'sysdate'},tableCab.column);
-  let datosUpdatCab  = await generate_update(NameTableCab, content.updateInserData, content.aux_updateInserData,{},{FEC_MODIF:'sysdate'}, tableCab.column,  tableCab.pk);
-  let deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_stentsal' }, tableCab.column,  tableCab.pk); 
+  let datosUpdatCab  = await generate_update(NameTableCab, content.updateInserData, content.aux_updateInserData,{},{FEC_MODIF:'sysdate',COD_USU_MODIF:`${cod_usuario}`}, tableCab.column,  tableCab.pk);
+  let deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_stenvio' }, tableCab.column,  tableCab.pk); 
 
   // DET
-  let NameTableDet   = 'ST_ENTSAL_DET';
+  let NameTableDet   = 'ST_NOTAS_ENVIO_DET';
 	let tableDet       = tableData.find( item => item.table === NameTableDet);
   let datosInserDet  = await generate_insert(NameTableDet, content.updateInserDataDet, {COD_EMPRESA:cod_empresa},tableDet.column);
   let datosUpdatDet  = await generate_update(NameTableDet, content.updateInserDataDet, content.aux_updateInserDataDet,{},{}, tableDet.column,  tableDet.pk);
-  let deleteDet      = await generate_delete(NameTableDet, content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_stentsal' }, tableDet.column,  tableDet.pk); 
-  
+  let deleteDet      = await generate_delete(NameTableDet, content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_stenvio' }, tableDet.column,  tableDet.pk); 
+
   try {
   var sql =   `
           BEGIN
-              :ret := eds_stentsal.abm_stentsal ( -- CAB
-                                                  :p_delete_cab  ,
-                                                  :p_update_cab  ,
-                                                  :p_insert_cab  ,
-                                                  -- DET
-                                                  :p_delete_det  ,
-                                                  :p_update_det  ,
-                                                  :p_insert_det  ,
-                                                  --
-                                                  :p_mensaje
-                                                );
+              :ret := eds_stenvio.abm_stenvio ( -- CAB
+                                                :p_delete_cab  ,
+                                                :p_update_cab  ,
+                                                :p_insert_cab  ,
+                                                -- DET
+                                                :p_delete_det  ,
+                                                :p_update_det  ,
+                                                :p_insert_det  ,
+                                                --
+                                                :p_mensaje
+                                              );
           END;`;
       const result  = await db.Open(sql,{
         // --- CAB 
@@ -169,8 +151,8 @@ exports.main = async(req, res, next)=>{
   } catch (error) {
     next();
     log_error.error(` ${error}`)
-    log_error.error(`eds_stentsal resul : ${result}`)
-    console.log("Error metodo eds_stentsal",error);
+    log_error.error(`eds_stenvio resul : ${result}`)
+    console.log("Error metodo eds_stenvio",error);
     res.status(200).json({error})
   }
 }

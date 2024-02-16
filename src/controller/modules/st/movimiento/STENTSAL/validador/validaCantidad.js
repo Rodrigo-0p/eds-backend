@@ -22,8 +22,6 @@ let CANTIDAD       = req.body.valor ? req.body.valor : ''
 let content 	    = [{COD_EMPRESA,COD_ARTICULO,COD_SUCURSAL,COD_DEPOSITO,DESC_ART,DESC_UM,IND_ENT_SAL,CANTIDAD,MULT,DIV,DECIMALES,NRO_LOTE,CANTIDAD_ANT,COSTO_UNITARIO}];
 let in_params     = content.map( item => { return _.keys(item) });  
 
-console.log(content)
-
 var valida 		 = [{
     campo			 : 'COD_EMPRESA'    ,
     paquete		 : 'EDS_STENTSAL.'  ,
@@ -34,16 +32,12 @@ var valida 		 = [{
     out_type   : {CANTIDAD_UB:'NUMBER',MONTO_TOTAL:'NUMBER',COSTO_UB:'NUMBER'},
     // bind_type  : { COSTO_UNITARIO :'INOUT'},
   }];  
-try {
-  var response = await validateBooleanFunction(content, valida, req);	
-
-  console.log(response);
-
-
-  res.status(200).json(response.data);
-} catch (error) {
-  log_error.error(`EDS_STENTSAL: VALIDA_CANTIDAD : ${error} `);;
-  console.error('EDS_STENTSAL: VALIDA_CANTIDAD   : ',error)
-  next()
-}
+  try {
+    var response = await validateBooleanFunction(content, valida, req);	
+    res.status(200).json(response.data);
+  } catch (error) {
+    log_error.error(`EDS_STENTSAL: VALIDA_CANTIDAD : ${error} `);;
+    console.error('EDS_STENTSAL: VALIDA_CANTIDAD   : ',error)
+    next()
+  }
 }

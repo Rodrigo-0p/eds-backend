@@ -23,12 +23,12 @@ var valida 		 = [{
     in_type    : {TIP_CAMBIO:'NUMBER',DECIMALES:'NUMBER'},
     out_type   : {MULT:'NUMBER',DIV:'NUMBER',COSTO_UNITARIO:'NUMBER'},
   }];
-try {
-  var response = await validateBooleanFunction(content, valida, req);	
-  res.status(200).json(response.data);
-} catch (error) {
-  log_error.error(`EDS_STENTSAL: VALIDA_UM : ${error} `);;
-  console.error('EDS_STENTSAL: VALIDA_UM   : ',error)
-  next()
-}
+  try {
+    var response = await validateBooleanFunction(content, valida, req);	
+    res.status(200).json(response.data);
+  } catch (error) {
+    log_error.error(`EDS_STENTSAL: VALIDA_UM : ${error} `);;
+    console.error('EDS_STENTSAL: VALIDA_UM   : ',error)
+    next()
+  }
 }

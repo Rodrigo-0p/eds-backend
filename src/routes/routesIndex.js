@@ -20,7 +20,8 @@ const vtlispre                  = require('./vt/definicion/VTLISPRE'        );
 // STOCK DEFINICION
 const starticu                  = require('./st/definicion/STARTICU'        );
 // STOCK MOVIMIENTO
-const stentsal                  = require('./st/movimiento/STENTSAL'         );
+const stentsal                  = require('./st/movimiento/STENTSAL'        );
+const stenvio                   = require('./st/movimiento/STENVIO'         );
 
 module.exports = function(){
 
@@ -44,6 +45,7 @@ module.exports = function(){
     router.use( starticu()      );
     // MOVIMIENTO
     router.use( stentsal()      );
+    router.use( stenvio()       );
 
 
     

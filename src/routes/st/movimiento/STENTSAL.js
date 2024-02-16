@@ -22,9 +22,10 @@ const vcantidad  = require('../../../controller/modules/st/movimiento/STENTSAL/v
 const lcabecera  = require('../../../controller/modules/st/movimiento/STENTSAL/listar/listCab'           );
 const ldetalle   = require('../../../controller/modules/st/movimiento/STENTSAL/listar/listDet'           );
 const lpostquery = require('../../../controller/modules/st/movimiento/STENTSAL/listar/postQuery'         );
-
 // ABM
-const main        = require('../../../controller/modules/st/movimiento/STENTSAL/main'                    );
+const main       = require('../../../controller/modules/st/movimiento/STENTSAL/main'                     );
+// REPORTE
+const rstentsal  = require('../../../controller/modules/st/movimiento/STENTSAL/reporte/RSTENTSAL'        );
 
 module.exports = function(){
   // ABMu
@@ -52,5 +53,7 @@ module.exports = function(){
   router.post('/st/stentsal/valida/articulo'  , varticulo.main   );
   router.post('/st/stentsal/valida/um'        , vum.main         );
   router.post('/st/stentsal/valida/cantidad'  , vcantidad.main   );
+  // REPORTE
+  router.post('/st/stentsal/reporte/rstentsal', rstentsal.main   );  
   return router;
 }

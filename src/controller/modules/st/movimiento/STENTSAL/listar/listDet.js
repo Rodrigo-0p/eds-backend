@@ -13,7 +13,7 @@ exports.main = async (req, res, next) => {
     result.rows = result.rows.shift().DATA;
     res.status(200).json( result );
   } catch (error) {
-    log_error.error(`listar_relaciones | EDS_STENSAL ${error}`)
+    log_error.error(`listar_detalle | EDS_STENSAL ${error}`)
     console.log(error);
     next();
   }
