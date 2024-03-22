@@ -7,6 +7,7 @@ const {log_error} = require('./logger')
 const PostValida = async(sql,params, req)=>{ 
     try { 
 
+
         // console.log(sql)
         // console.log(params)
         
@@ -284,14 +285,7 @@ exports.validateBooleanFunction = async(content,valida,req)=>{
                         dir: oracledb[`BIND_${element?.bind_type?.[in_params[y]]}`], 
                         type: !_.isUndefined(element?.in_type?.[in_params[y]]) ? oracledb[ element?.in_type?.[in_params[y]] ] : oracledb.STRING, 
                         val : element?.in_type?.[in_params[y]] == 'NUMBER' ? _.isNumber( ValidaNumero(item[in_params[y]]) ) ? ValidaNumero( item[in_params[y]] )
-                            : null : _.isNull(item[in_params[y]]) ? item[in_params[y]] : `${item[in_params[y]]}` 
-
-                        // val : element?.in_type?.[in_params[y]] == 'NUMBER' ? _.isNumber( ValidaNumero(item[in_params[y]]) )
-                        //     ? ValidaNumero( item[in_params[y]] )
-                        //     : null
-                        //     : `${item[in_params[y]]}` 
-                    };  
-                   
+                            : null : _.isNull(item[in_params[y]]) ? item[in_params[y]] : `${item[in_params[y]]}` };  
                 }
             }
             for (let y = 0; y < out_params.length; y++) {

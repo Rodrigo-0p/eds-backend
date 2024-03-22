@@ -9,8 +9,10 @@ const infoSucursal              = require('./pb/infoSucursal/infoSucursal'  );
 // BASE
 const bsperson                  = require('./bs/definicion/BSPERSON'        );
 
-// COMPRAS 
+// COMPRAS DEF
 const cmprovec                  = require('./cm/definicion/CMPROVEC'        );
+// COMPRAS MOV
+const cmfactur                  = require('./cm/movimiento/CMFACTUR'        );
 
 // VENTAS   
 const vtclient                  = require('./vt/definicion/VTCLIENT'        );
@@ -33,8 +35,10 @@ module.exports = function(){
     // BASE
     router.use( bsperson()      );
 
-    // IMPORTACIONES Y COMPRAS
+    //  COMPRAS DEFINICION
     router.use( cmprovec()      );
+    //  COMPRAS MOVIMIENTO
+    router.use( cmfactur()      );
 
     // VENTAS
     router.use( vtclient()      );

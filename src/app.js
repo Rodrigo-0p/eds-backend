@@ -7,7 +7,8 @@ const cors           = require('cors');
 const app            = express();
 const jwt            = require("jsonwebtoken");
 const moment         = require('moment');
-const validateToken  = require('./routes/middlaware/middlaware')
+const validateToken = require('./routes/middlaware/middlaware');
+
 const {log_info}     = require('./utils/logger')
 
 require('dotenv').config();
@@ -36,22 +37,26 @@ app.use(function (req, res, next) {
       return res.status(200).end();
     }
         
-   if ( req.path            === '/api/auth/login' ||
-        req.path.slice(0,7) === '/public') {
-      return next()
+    if (req.path === '/api/auth/login' || req.path.slice(0, 7) === '/public') {
+      return next();
     }
 
-    // Next middleware
-    const token = req.headers.authorization    
-    console.log("Authorization:", token)
-    console.log(req.path)
+    try {
+      // Next middleware
+      const token = req.headers.authorization;
+      console.log("Authorization:", token);
+      console.log(req.path);
+      
+      const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+      var direccion_ip = ip.replace("::ffff:", "");
+      log_info.info(`ruta: ${req.path} - ${direccion_ip} - [${moment().format('DD-MM-YYYY HH:mm')}]`);
 
-    const ip         = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    var direccion_ip = ip.replace("::ffff:","");
-    log_info.info(`ruta: ${req.path} - ${direccion_ip} - [${moment().format('DD-MM-YYYY HH:mm')}]`)
-
-    app.use('/',validateToken);   
-    next();
+      // Aplicar el middleware validateToken solo para rutas que lo necesiten
+     return validateToken(req, res, next);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: true, message: 'Error interno del servidor' });
+  }        
 });
 
 app.use('/', routes());

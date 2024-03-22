@@ -48,8 +48,7 @@ const comparar = async(data, aux, columns) => {
 }
 exports.generate_update = async( table_name, data, auxData, auxKey = [], opcion = {}, tableColumn, tablePrimaryKey ) => {
   let sql = '';
-  let content = data.filter( item => item.updated );
-  console.log("🚀 ~ file: generate_update_script.js:102 ~ exports.generate_update=async ~ content:", content.length)
+  let content = data.filter( item => item.updated ); 
   let array_opcion = Object.keys(opcion);
   if(content.length > 0){
     let columns = tableColumn;

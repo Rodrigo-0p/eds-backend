@@ -1,5 +1,5 @@
 const conn                   = require('../../connection/conn');
-const crypto                 = require('../../utils/crypto');
+const crypto                 = require('../../utils/crypto');crypto
 const {log_info
      , log_error}            = require('../../utils/logger')
 const jwt                    = require("jsonwebtoken");
