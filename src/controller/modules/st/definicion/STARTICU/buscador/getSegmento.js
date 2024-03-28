@@ -9,7 +9,7 @@ exports.main = async (req, res, next)  => {
   try {
       var sql =   ` select *
                       from (
-                    select p.rowid id, p.cod_categoria, p.descripcion desc_categoria
+                    select p.cod_categoria, p.descripcion desc_categoria
                       from st_categoria p
                     where p.cod_empresa = :cod_empresa
                       and p.cod_linea   = :cod_linea

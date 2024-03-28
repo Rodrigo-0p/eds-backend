@@ -108,14 +108,6 @@ exports.main = async(req, res, next)=>{
   let datosUpdateDet = await generate_update(req,'ST_RELACIONES', content.updateInserDataDet, content.aux_updateInserDataDet,{IND_BASICO:'IND_BASICO_ANT',COD_UNIDAD_REL:'COD_UNIDAD_REL_ANT'});
   let datosDeleteDet = await generate_delete(req,'ST_RELACIONES', content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'EDS_STARTICU' }); 
 
-  // console.log('==>',datosInsertCab)
-  // console.log('==>',datosUpdateCab)
-  // console.log('==>',datosDeleteCab)
-
-  // console.log('==>',datosInsertDet)
-  // console.log('==>',datosUpdateDet)
-  // console.log('==>',datosDeleteDet)
-
   try {
   var sql =   `
           BEGIN

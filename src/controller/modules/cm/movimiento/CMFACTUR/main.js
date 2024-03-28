@@ -6,7 +6,8 @@ const tableData                 = require('./tableDate');
 const { generate_update }       = require('../../../../../utility/generate_update'  );
 const { generate_insert }       = require('../../../../../utility/generate_insert'  );
 const { generate_delete }       = require('../../../../../utility/generate_delete'  );
-const {validateBooleanFunction} = require('../../../../../utils/validate'           );
+const {validateBooleanFunction,
+       validateGlobalFunction } = require('../../../../../utils/validate'           );
 
 exports.getNroComp = async (req, res, next) => {
   let { cod_empresa, tip_comprobante, ser_comprobante}     = req.params;
@@ -197,6 +198,84 @@ exports.main = async(req, res, next)=>{
         p_mensaje          : { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 300 },
         ret                : { dir: oracledb.BIND_OUT, type: oracledb.NUMBER, maxSize: 300 },
       }, true, req.headers.authuser, await crypto.decrypt(req.headers.authpass) );
+
+      if(content.updateInserData.length > 0 && result.outBinds && result.outBinds.ret === 1){
+        let valor  = content.updateInserData[0];
+
+        if ( ( valor.BLOQ_X_PREC  === 'N'  )  || 
+             ( valor.BLOQ_X_COND  === 'N'  )  || 
+             ( valor.BLOQ_X_FLETE === 'N'  )  || 
+             ( valor.BLOQ_X_OTROS === 'N'  )  &&  ( valor.ESTADO  !== 'A'  ) ){
+        
+            let params = [{
+                COD_EMPRESA       : valor.COD_EMPRESA      ,      
+                COD_SUCURSAL      : valor.COD_SUCURSAL     ,
+                FEC_COMPROBANTE   : valor.FEC_COMPROBANTE  ,
+                TIP_COMPROBANTE   : valor.TIP_COMPROBANTE  ,
+                SER_COMPROBANTE   : valor.SER_COMPROBANTE  ,
+                NRO_COMPROBANTE   : valor.NRO_COMPROBANTE  ,
+                BLOQ_X_PREC       : valor.BLOQ_X_PREC      ,
+                BLOQ_X_COND       : valor.BLOQ_X_COND      ,
+                BLOQ_X_FLETE      : valor.BLOQ_X_FLETE     ,
+                BLOQ_X_OTROS      : valor.BLOQ_X_OTROS     ,
+                BLOQ_X_SUP        : valor.BLOQ_X_SUP ? valor.BLOQ_X_SUP : 'N',
+                COD_PROVEEDOR     : valor.COD_PROVEEDOR    ,
+                TOT_COMPROBANTE   : valor.TOT_COMPROBANTE  ,
+            }];
+
+            console.log(params);
+
+            const INSERT_AUTORIZACION_COMPRA = [{
+                campo: 'NRO_COMPROBANTE',
+                funcion: 'ACT_AUTORIZA_COMPRA',
+                in_params: [
+                  'COD_EMPRESA'       , 'COD_SUCURSAL' ,'FEC_COMPROBANTE' , 'TIP_COMPROBANTE' ,'SER_COMPROBANTE',
+                  'NRO_COMPROBANTE'   , 'BLOQ_X_PREC'  ,'BLOQ_X_COND'     , 'BLOQ_X_FLETE'    ,
+                  'BLOQ_X_OTROS'      , 'BLOQ_X_SUP'   ,'COD_PROVEEDOR'   , 'TOT_COMPROBANTE' 
+                ],
+                out_params:[],
+                type:[]
+              },
+            ];
+            var resultado = await validateGlobalFunction(params, INSERT_AUTORIZACION_COMPRA, req)          
+            if(!resultado.valor) result.outBinds.p_mensaje = 'Se generará una autorización para este Pedido';
+            else{
+              result.outBinds.ret       = 0 
+              result.outBinds.p_mensaje = resultado?.data?.outBinds?.p_mensaje;
+            }  
+
+        }else{
+          if (valor.ESTADO !== 'A' ){
+
+            let NameTable           = 'CM_AUTORIZA_COMPRA';
+            let table               = tableData.find( item => item.table === NameTable);
+            let p_delete_aut_compra = await generate_delete(NameTable, [valor],{ cod_empresa, cod_usuario, direccion_ip, modulo:'CM', paquete:'eds_cmfactur' }, table.column,  table.pk); 
+            try {
+              var sql =   `
+                  BEGIN
+                      :ret := eds_cmfactur.delete_aut_compra (  :p_delete_autoriza_compra,
+                                                                :p_mensaje
+                                                              );
+                  END;`;
+              const resp  = await db.Open(sql,{
+                p_delete_autoriza_compra     : p_delete_aut_compra,      
+                p_mensaje                    : { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 300 },
+                ret                          : { dir: oracledb.BIND_OUT, type: oracledb.NUMBER, maxSize: 300 },
+              }, true, req.headers.authuser, await crypto.decrypt(req.headers.authpass) );
+
+              if(!resp.valor) result.outBinds.p_mensaje = '';
+              else{
+                result.outBinds.ret       = 0 
+                result.outBinds.p_mensaje = resp?.data?.outBinds?.p_mensaje;
+              }
+            } catch (error) {
+              console.error(error)
+              log_error.error(`abm_cmfactur ${error}`)
+            }
+
+          }
+        }
+      }
 
     res.status(200).json(result.outBinds ? result.outBinds : {p_mensaje:result.message});
   } catch (error) {

@@ -1,4 +1,3 @@
-
 module.exports = [
   {
     table: 'CM_COMPRAS_CABECERA',
@@ -105,114 +104,10 @@ module.exports = [
             , {"COLUMN_NAME":"COMENTARIO"             , "DATA_TYPE":"VARCHAR2"  }
             , {"COLUMN_NAME":"IND_TIPO_FACTURA"       , "DATA_TYPE":"VARCHAR2"  }
           ],
-
    pk:   [ { COLUMN_NAME: 'COD_EMPRESA'    , POSITION: 1 },
            { COLUMN_NAME: 'TIP_COMPROBANTE', POSITION: 2 },
            { COLUMN_NAME: 'SER_COMPROBANTE', POSITION: 3 },
            { COLUMN_NAME: 'NRO_COMPROBANTE', POSITION: 4 },
            { COLUMN_NAME: 'COD_PROVEEDOR'  , POSITION: 5 }],
-  },
-  {
-    table: 'CM_COMPRAS_DETALLE',
-    column: [ {"COLUMN_NAME":"COD_EMPRESA"              , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"TIP_COMPROBANTE"          , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"SER_COMPROBANTE"          , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"NRO_COMPROBANTE"          , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COD_ARTICULO"             , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"CANTIDAD"                 , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"PRECIO_UNITARIO"          , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_GASTOS"             , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_TOTAL"              , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"TOTAL_IVA"                , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COD_UNIDAD_MEDIDA"        , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"CANTIDAD_UB"              , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COD_IVA"                  , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"NRO_LOTE"                 , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"PRECIO_UNITARIO_C_IVA"    , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_TOTAL_C_IVA"        , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"PORCENTAJE_IVA"           , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"GASTO"                    , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"DESCUENTO"                , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"IND_BLOQ"                 , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"PRECIO_UB"                , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"PRECIO_UNITARIO_REF"      , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"FEC_VENCIMIENTO"          , "DATA_TYPE":"DATE"      }
-            , {"COLUMN_NAME":"NRO_ORDEN"                , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COD_DEPOSITO"             , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"FLETE"                    , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"NRO_ORDEN_REF"            , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"IND_MANEJA_EXISTENCIA"    , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"MONTO_GASTOS_MB"          , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_GASTOS_ME"          , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_TOT_REF"            , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"RECARGO"                  , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COD_PROVEEDOR_REC"        , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"TIP_COMPROBANTE_REF"      , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"SER_COMPROBANTE_REF"      , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"NRO_COMPROBANTE_REF"      , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"PRECIO_DIFERENCIA"        , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_DIFERENCIA"         , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"BLOQ_X_COND"              , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"MONTO_FLETE_MB"           , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_FLETE"              , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COD_CLIENTE"              , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"COD_SUBCLIENTE"           , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"TIP_PEDIDO"               , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"SER_PEDIDO"               , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"NRO_PEDIDO"               , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"ORD_PEDIDO"               , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"IND_BON"                  , "DATA_TYPE":"VARCHAR2"  }
-            , {"COLUMN_NAME":"PESO"                     , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"TOTAL_PESO"               , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_GASTOS_SIN_IVA"     , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_GASTOS_ME_SIN_IVA"  , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"MONTO_GASTOS_MB_SIN_IVA"  , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"PRECIO_ULTIMO_COSTO"      , "DATA_TYPE":"NUMBER"    }
-            , {"COLUMN_NAME":"COSTO_DIRECTO"            , "DATA_TYPE":"NUMBER"    }
-          ],
-    pk:  [
-      { COLUMN_NAME: 'COD_EMPRESA'    , POSITION: 1 },
-      { COLUMN_NAME: 'TIP_COMPROBANTE', POSITION: 2 },
-      { COLUMN_NAME: 'SER_COMPROBANTE', POSITION: 3 },
-      { COLUMN_NAME: 'NRO_COMPROBANTE', POSITION: 4 },
-      { COLUMN_NAME: 'NRO_ORDEN'      , POSITION: 5 }
-    ],
-  },{
-    table: 'CM_AUTORIZA_COMPRA',
-    column: [
-              {"COLUMN_NAME":"COD_EMPRESA"          , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_SUCURSAL"         , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"NRO_AUTORIZACION"     , "DATA_TYPE":"NUMBER"  }
-            , {"COLUMN_NAME":"TIP_COMPROBANTE"      , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"SER_COMPROBANTE"      , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"NRO_COMPROBANTE"      , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_MONEDA"           , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_PROVEEDOR"        , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"FEC_COMPROBANTE"      , "DATA_TYPE":"DATE"    }
-            , {"COLUMN_NAME":"COD_MOTIVO_ANU"       , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"TOTAL_COMPROBANTE"    , "DATA_TYPE":"NUMBER"  }
-            , {"COLUMN_NAME":"AUT_PRECIOS"          , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"PEND_X_PRECIO"        , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"AUT_COND_COMPRA"      , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"PEND_X_COND"          , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"AUT_TIPO_FLETE"       , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"PEND_X_FLETE"         , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"AUT_OTROS"            , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"PEND_X_OTROS"         , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_USUARIO"          , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"ESTADO"               , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"AUT_SUPER"            , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"PEND_X_SUPER"         , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_USUARIO_SUP"      , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_USUA_PRECIO"      , "DATA_TYPE":"VARCHAR2"}
-            , {"COLUMN_NAME":"COD_USUA_OTROS"       , "DATA_TYPE":"VARCHAR2"}
-          ],
-    pk:[
-        { COLUMN_NAME: 'COD_EMPRESA'     , POSITION: 1 },
-        { COLUMN_NAME: 'NRO_AUTORIZACION', POSITION: 2 },
-        { COLUMN_NAME: 'TIP_COMPROBANTE' , POSITION: 3 },
-        { COLUMN_NAME: 'SER_COMPROBANTE' , POSITION: 4 },
-        { COLUMN_NAME: 'NRO_COMPROBANTE' , POSITION: 5 }
-      ]
-  }
-]
+   },
+  ]

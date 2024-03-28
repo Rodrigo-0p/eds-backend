@@ -13,6 +13,7 @@ const bsperson                  = require('./bs/definicion/BSPERSON'        );
 const cmprovec                  = require('./cm/definicion/CMPROVEC'        );
 // COMPRAS MOV
 const cmfactur                  = require('./cm/movimiento/CMFACTUR'        );
+const cmcoffac                  = require('./cm/movimiento/CMCOFFAC'        );
 
 // VENTAS   
 const vtclient                  = require('./vt/definicion/VTCLIENT'        );
@@ -39,6 +40,7 @@ module.exports = function(){
     router.use( cmprovec()      );
     //  COMPRAS MOVIMIENTO
     router.use( cmfactur()      );
+    router.use( cmcoffac()      );
 
     // VENTAS
     router.use( vtclient()      );

@@ -6,11 +6,10 @@ const {log_error} = require('./logger')
 
 const PostValida = async(sql,params, req)=>{ 
     try { 
-
-
+        
         // console.log(sql)
         // console.log(params)
-        
+
         const response = await db.Open(sql, params, true ,req.headers.authuser, await crypto.decrypt(req.headers.authpass) );
 
         return response;
@@ -227,9 +226,6 @@ exports.validateGlobalFunction = async(content,valida,req)=>{
                 params["p_mensaje"] = { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 300}
                 params["ret"] = { dir: oracledb.BIND_OUT, type: oracledb.NUMBER, maxSize: 300 }
                 data = await PostValida(sql,params,req);
-
-                console.log(sql);
-
                 if(data.outBinds.ret == 0){
                     p_mensaje = data.outBinds.p_mensaje
                     bandera = true;
