@@ -5,13 +5,10 @@ const _           = require('underscore');
 const {log_error} = require('./logger')
 
 const PostValida = async(sql,params, req)=>{ 
-    try { 
-        
+    try {         
         // console.log(sql)
         // console.log(params)
-
         const response = await db.Open(sql, params, true ,req.headers.authuser, await crypto.decrypt(req.headers.authpass) );
-
         return response;
     } catch (error) {
         log_error.error(`PostValida ${error}`) 

@@ -13,7 +13,7 @@ exports.main = async (req, res, next)  => {
 		in_params	: in_params[0],
 		out_params: ['DESC_MONEDA','DECIMALES','TIP_CAMBIO','TIP_CAMBIO_US','TIP_CAMBIO_RS'],
     in_type   : {FEC_COMPROBANTE:'DATE'},
-    out_type  : {TIP_CAMBIO:'NUMBER'},    
+    out_type  : {TIP_CAMBIO:'NUMBER',DECIMALES:'NUMBER',TIP_CAMBIO_US:'NUMBER',TIP_CAMBIO_RS:'NUMBER'},
   }];
 	try {
 		let response = await validateBooleanFunction(content, valida, req);

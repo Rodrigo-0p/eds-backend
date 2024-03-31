@@ -28,6 +28,10 @@ exports.main = async (req, res, next)  => {
                 , 'PRECIO_UNITARIO_C_IVA'
                 , 'PRECIO_ULTIMO_COSTO'
               ],
+    in_type:{
+      COD_MONEDA:'NUMBER',
+      DECIMALES: 'NUMBER',
+    },
     out_type:{
       MULT                 : 'NUMBER',
       DIV                  : 'NUMBER',

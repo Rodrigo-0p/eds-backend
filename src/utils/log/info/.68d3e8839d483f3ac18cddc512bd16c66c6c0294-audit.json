@@ -6,14 +6,14 @@
     "auditLog": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\.68d3e8839d483f3ac18cddc512bd16c66c6c0294-audit.json",
     "files": [
         {
-            "date": 1711373113164,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-03-25.log",
-            "hash": "bd7142f03518702659313ade0def7ad8549df329f0c773b80e9efe8f117333af"
-        },
-        {
             "date": 1711625508704,
             "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-03-28.log",
             "hash": "8a6224098155a8b6f62ea21414157474698f8d6ba577f0e3f8239d9a56fbcd5d"
+        },
+        {
+            "date": 1711894733501,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-03-31.log",
+            "hash": "d306d62ab5f53b1e55e0ee49ca145678b21282aab3a4a09aca49ed16df4bf4c4"
         }
     ],
     "hashType": "sha256"
