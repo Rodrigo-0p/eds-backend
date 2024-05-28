@@ -16,9 +16,17 @@ const cmfactur                  = require('./cm/movimiento/CMFACTUR'        );
 const cmcoffac                  = require('./cm/movimiento/CMCOFFAC'        );
 
 // VENTAS   
+// DEFINICION
 const vtclient                  = require('./vt/definicion/VTCLIENT'        );
 const vtvende                   = require('./vt/definicion/VTVENDE'         );
 const vtlispre                  = require('./vt/definicion/VTLISPRE'        );
+// MOVIMIENTO
+const vtpresar                  = require('./vt/movimiento/VTPRESAR'        );
+const vtpedido                  = require('./vt/movimiento/VTPEDIDO'        );
+const vtfactur                  = require('./vt/movimiento/VTFACTUR'        );
+
+// CUENTA A COBRAR
+const ccrenagr                  = require('./cc/movimiento/cobranza/CCRENAGR');
 
 // STOCK DEFINICION
 const starticu                  = require('./st/definicion/STARTICU'        );
@@ -42,18 +50,25 @@ module.exports = function(){
     router.use( cmfactur()      );
     router.use( cmcoffac()      );
 
-    // VENTAS
+    // VENTAS DEFINICION
     router.use( vtclient()      );
     router.use( vtvende()       );
     router.use( vtlispre()      );
     
+    // MOVIMIENTO
+    router.use( vtpresar()      );
+    router.use( vtpedido()      );
+    router.use( vtfactur()      );
+
+    // CUENTA A COBRAR
+    // MOVIMIENTO
+    router.use( ccrenagr()      );
+
     //STOCK DEFINICION
     router.use( starticu()      );
     // MOVIMIENTO
     router.use( stentsal()      );
     router.use( stenvio()       );
-
-
     
     return router;
 }

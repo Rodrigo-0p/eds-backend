@@ -16,10 +16,7 @@ exports.main = async (req, res, next)  => {
                        and rownum <= 100
                      order by lpad(s.cod_deposito,10,'0') asc
                   `;
-      var data = {cod_empresa,cod_sucursal,valor};
-      
-      console.log(data);
-
+      var data = {cod_empresa,cod_sucursal,valor};      
       const response = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));
       res.status(200).json(response);
     } catch (e) {

@@ -5,7 +5,6 @@
   exports.main = async (req, res, next)  => {
 
   const {COD_EMPRESA,COD_MARCA}	 = req.body;
-  console.log(req.body);
   const COD_LINEA      = req.body.valor ? req.body.valor : ''
 
   let content 	 = [{COD_EMPRESA,COD_MARCA,COD_LINEA}];
@@ -15,7 +14,7 @@
       campo			 : 'COD_LINEA'     ,
       paquete		 : 'EDS_STARTICU.' ,
       funcion		 : 'valida_linea'  ,			
-      in_params  : ['COD_EMPRESA','COD_MARCA','COD_LINEA'],
+      in_params  : in_params[0],
       out_params : ['DESC_LINEA']  ,
     }];
   try {

@@ -93,7 +93,7 @@ const comparar = async(data, aux, columns) => {
 exports.generate_update = async(req, table_name, data, auxData, auxKey = [], opcion = {} ) => {
   let sql = '';
   
-  console.log(data);
+  // console.log(data);
   
   let content = data.filter( item => item.updated );
   

@@ -222,9 +222,6 @@ exports.main = async(req, res, next)=>{
                 COD_PROVEEDOR     : valor.COD_PROVEEDOR    ,
                 TOT_COMPROBANTE   : valor.TOT_COMPROBANTE  ,
             }];
-
-            console.log(params);
-
             const INSERT_AUTORIZACION_COMPRA = [{
                 campo: 'NRO_COMPROBANTE',
                 funcion: 'ACT_AUTORIZA_COMPRA',

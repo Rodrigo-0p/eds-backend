@@ -39,9 +39,8 @@ exports.AutenticarUsuario = async (req, res, next) => {
                     and u.cod_sucursal    = s.cod_sucursal
                     and nvl(u.estado,'I') = 'A'
                     and u.cod_usuario     =:cod_usuario
-                    order by s.cod_sucursal asc
+                    order by s.cod_sucursal, s.cod_empresa asc
           `          
-
      let response = await conn.Open(sql,{cod_usuario:username},false, username, password);
 
      if( response.errorNum > 0){

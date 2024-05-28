@@ -1,0 +1,218 @@
+
+module.exports = [
+  {
+    table: 'VT_PRESUPUESTO_CAB',
+    column:[ {"COLUMN_NAME":"COD_EMPRESA"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIP_COMPROBANTE"         ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SER_COMPROBANTE"         ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_COMPROBANTE"         ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"COD_SUCURSAL"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"FEC_COMPROBANTE"         ,"DATA_TYPE":"DATE"      }
+            ,{"COLUMN_NAME":"COD_CLIENTE"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_VENDEDOR"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_CONDICION_VENTA"     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_LISTA_PRECIO"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_MONEDA"              ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIP_CAMBIO"              ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"TOT_COMPROBANTE"         ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"TOT_GRAVADAS"            ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"TOT_EXENTAS"             ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"TOT_IVA"                 ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"ESTADO"                  ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"FEC_ESTADO"              ,"DATA_TYPE":"DATE"      }
+            ,{"COLUMN_NAME":"COD_USUARIO"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_AUTORIZACION"        ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"FEC_VENCIMIENTO"         ,"DATA_TYPE":"DATE"      }
+            ,{"COLUMN_NAME":"TEL_CLIENTE"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"RUC"                     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"PROCESADO"               ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NOM_CLIENTE"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"DIR_CLIENTE"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COMENTARIO"              ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"FEC_ALTA"                ,"DATA_TYPE":"DATE"      }
+            ,{"COLUMN_NAME":"ESTADO_REPARTO"          ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"CI"                      ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIP_CAMBIO_US"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"COD_DEPOSITO"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_CRED"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_PREC"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_COND"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_ZONA"                ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_SUBCLIENTE"          ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NOM_SUBCLIENTE"          ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"PORC_DESC_VAR"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"PORC_DESC_FIN"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"DESCUENTO_VAR"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"DESCUENTO_FIN"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"IND_REPARTO"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_DESC_FIN"    ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_DESC_OTR"    ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_GENERICO"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"CLIENTE_PERSONAS"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"VENDEDOR_PERSONA"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"LIMITE_CREDITO"          ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"SALDO"                   ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"TIP_COMPROBANTE_REF"     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SER_COMPROBANTE_REF"     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_COMPROBANTE_REF"     ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"NRO_SEQ_CEC"             ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"TIP_MOV_CAJ"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SER_MOV_CAJ"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_MOV_CAJ"             ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"FEC_CIERRE"              ,"DATA_TYPE":"DATE"      }
+            ,{"COLUMN_NAME":"COD_SUPERVISOR"          ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SUPERVISOR_PERSONA"      ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQ_X_VENT_PROG"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_TELEV"               ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SIGLAS"                  ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_BONIFIC"     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_USUARIO_MODIFIC"     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_MOTIVO_ANU"          ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIP_COMPR_REF"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SER_COMPR_REF"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_COMPR_REF"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"COD_SUCURSAL_ANT"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_DEPOSITO_ANT"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"OBS_ANU"                 ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_VEHICULO"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_VENTA"               ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_VISITA"              ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"LONGITUD"                ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"LATITUD"                 ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_ORDEN_COMPRA"        ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_PROMOCION"           ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"OBSERVACIONES"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_LOGISTICA"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_COMERCIAL"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_REG_TURISMO"         ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_VTO"         ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"ANULADO_POR"             ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_COND_VTA"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_OTROS"       ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_AUT_DESC"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"OBS_AUT_DESC"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_INPASA"              ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_RH"                  ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_EMPLEADO"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"CANT_CUOTA"              ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"FEC_CALCULO"             ,"DATA_TYPE":"DATE"      }
+            ,{"COLUMN_NAME":"COD_CONCEPTO"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_LIQ_FINAL"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIP_COMP_REF"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"SER_COMP_REF"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_COMP_REF"            ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"IND_TRANS"               ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_GRUP_VEND"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"COD_CLIENTE_REF"         ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_BON"                 ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"IND_PRESENCIAL"          ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_INGRESO"     ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIP_VTA_GANADO"          ,"DATA_TYPE":"VARCHAR2"  } 
+            ,{"COLUMN_NAME":"TIP_PLANILLA"            ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"NRO_PLANILLA"            ,"DATA_TYPE":"NUMBER"    }
+            ,{"COLUMN_NAME":"IND_PRONT_ENT"           ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"TIPTRA"                  ,"DATA_TYPE":"VARCHAR2"  }
+            ,{"COLUMN_NAME":"ESTADO_CORREO"           ,"DATA_TYPE":"VARCHAR2"  }
+          ],
+
+   pk:   [{ COLUMN_NAME: 'COD_EMPRESA'    , POSITION: 1 },
+          { COLUMN_NAME: 'TIP_COMPROBANTE', POSITION: 2 },
+          { COLUMN_NAME: 'SER_COMPROBANTE', POSITION: 3 },
+          { COLUMN_NAME: 'NRO_COMPROBANTE', POSITION: 4 }
+          ],
+  },
+  {
+    table: 'VT_PRESUPUESTO_DET',
+    column: [{"COLUMN_NAME":"COD_EMPRESA"                ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"TIP_COMPROBANTE"            ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"SER_COMPROBANTE"            ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"NRO_COMPROBANTE"            ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COD_ARTICULO"               ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"CANTIDAD"                   ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"CANTIDAD_FACTURADA"         ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PRECIO_UNITARIO"            ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"MONTO_TOTAL"                ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"TOTAL_IVA"                  ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COSTO_PROMEDIO"             ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COD_UNIDAD_MEDIDA"          ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"CANTIDAD_UB"                ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PORC_IVA"                   ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"ORDEN"                      ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"NRO_LOTE"                   ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_DEPOSITO"               ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_IVA"                    ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PRECIO_UNITARIO_C_IVA"      ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COD_SUCURSAL"               ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"MONTO_TOTAL_CONIVA"         ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PRECIO_UB"                  ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COSTO_ULTIMO"               ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"CANTIDAD_UB_S_STOCK"        ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"IND_MANEJA_STOCK"           ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PORC_DESC_VAR"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PORC_DESC_FIN"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"DESCUENTO_VAR"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"DESCUENTO_FIN"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"IND_BLOQUEADO"              ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"CANTIDAD_ANT"               ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"CANTIDAD_UB_ANT"            ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PRECIO_LISTA"               ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"FEC_VENCIMIENTO"            ,"DATA_TYPE":"DATE"    }
+            ,{"COLUMN_NAME":"PORC_COMISION"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"TIP_COMPROBANTE_REF"        ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"SER_COMPROBANTE_REF"        ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"NRO_COMPROBANTE_REF"        ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"NRO_ORDEN_REF"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PRECIO_MIN"                 ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COD_UM"                     ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_LINEA"                  ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PORC_COMISION_SUPERVISOR"   ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PORC_NEG"                   ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"IND_VENTA"                  ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_ARTICULO_ORIGEN"        ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"IND_PROVISORIO"             ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"IND_REG_TURISMO"            ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PRECIO_NEG"                 ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"IND_TIP_PROD"               ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"IND_OTROS"                  ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"IND_INPASA"                 ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"MARG_UTIL"                  ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PRECIO_DIFERENCIA"          ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"NRO_PROMOCION"              ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"TIPO_PROMOCION"             ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"NRO_AUTORIZACION"           ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_CLIENTE_REF"            ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_SUBCLIENTE_REF"         ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"IND_BON"                    ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"IND_BON_CAU"                ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PORC_GRAVADA"               ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"BLOQUEADO_X_INGRESO"        ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PESO"                       ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"TOTAL_PESO"                 ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PESO_MUERTO"                ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"TOTAL_PESO_MUERTO"          ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PORC_UTILIDAD"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PESO_DESBASTE"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"TOTAL_PESO_DESBASTE"        ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PORC_DESBASTE"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"PRECIO_X_PESO_C_IVA"        ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"FEC_VIGENCIA_PRECIO"        ,"DATA_TYPE":"DATE"    }
+            ,{"COLUMN_NAME":"IND_PRONT_ENT"              ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"TIP_COMPR_REF"              ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"SER_COMPR_REF"              ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"NRO_COMPR_REF"              ,"DATA_TYPE":"NUMBER"  }
+            ,{"COLUMN_NAME":"COMENTARIO"                 ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"COD_LISTA_PRECIO"           ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"MULT"                       ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"DIV"                        ,"DATA_TYPE":"VARCHAR2"}
+            ,{"COLUMN_NAME":"PORC_DESC"                  ,"DATA_TYPE":"VARCHAR2"}            
+            ,{"COLUMN_NAME":"DESCUENTO"                  ,"DATA_TYPE":"VARCHAR2"}
+          ],
+    pk:[
+        { COLUMN_NAME: 'COD_EMPRESA'    , POSITION: 1 },
+        { COLUMN_NAME: 'TIP_COMPROBANTE', POSITION: 2 },
+        { COLUMN_NAME: 'SER_COMPROBANTE', POSITION: 3 },
+        { COLUMN_NAME: 'NRO_COMPROBANTE', POSITION: 4 },
+        { COLUMN_NAME: 'ORDEN'          , POSITION: 5 }
+      ]
+  }
+]
