@@ -10,7 +10,7 @@ const bDpto     = require('../../../controller/modules/bs/definicion/BSPERSON/bu
 const bCiudad   = require('../../../controller/modules/bs/definicion/BSPERSON/buscador/getCiudad'                );
 const bBarrio   = require('../../../controller/modules/bs/definicion/BSPERSON/buscador/getBarrio'                );
 const bTipIden  = require('../../../controller/modules/bs/definicion/BSPERSON/buscador/getTipoIdentificacion'    );
-const bspersona = require('../../../controller/modules/bs/definicion/BSPERSON/main');
+const bspersona = require('../../../controller/modules/bs/definicion/BSPERSON/main'                              );
 // VALIDACION
 const vTipoSoc  = require('../../../controller/modules/bs/definicion/BSPERSON/validador/validaTipoSociedad'      );
 const vSector   = require('../../../controller/modules/bs/definicion/BSPERSON/validador/validaSector'            );

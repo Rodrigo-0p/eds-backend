@@ -19,14 +19,16 @@ exports.main = async (req, res, next)  => {
 		in_params	: in_params[0],
 		out_params: ['DESC_ARTICULO' 	     ,'COD_UNIDAD_MEDIDA','DESC_UNIDAD_MEDIDA' ,
                 'PRECIO_UNITARIO_C_IVA','PRECIO_UNITARIO_C_IVA_ANT'              ,
-                'FEC_VENCIMIENTO'      , 'MULT'	,'DIV'
-              ],
+                'FEC_VENCIMIENTO'      , 'MULT'	       ,'DIV'  ,'COD_IVA'        ,
+                'PORC_IVA'             , 'PORC_GRAVADA'],
     in_type:{},
     out_type:{
       MULT                     : 'NUMBER',
       DIV                      : 'NUMBER',
       PRECIO_UNITARIO_C_IVA    : 'NUMBER',
       PRECIO_UNITARIO_C_IVA_ANT: 'NUMBER',
+      PORC_IVA                 : 'NUMBER',
+      PORC_GRAVADA             : 'NUMBER'
     }
   }];
 	try {

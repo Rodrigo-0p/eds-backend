@@ -71,6 +71,12 @@ exports.main = async(req, res, next)=>{
       in_params  : ['COD_EMPRESA','COD_CLIENTE']      ,
       out_params : ['DESC_CLIENTE','RUC','TELEFONO','SEXO','DIRECCION' , 'DIREC_ELECTRONICA','ES_FISICA'],
     },{
+      campo			 : 'COD_CLIENTE',
+      paquete		 : 'EDS_VTPRESAR.',
+      funcion		 : 'VALIDA_SUBCLIENT',
+      in_params  : ['COD_EMPRESA','COD_CLIENTE','COD_SUBCLIENTE'],
+      out_params : ['DESC_SUBCLIENTE'],
+    },{
       campo			: 'COD_LISTA_PRECIO',
       paquete		: 'EDS_VTPRESAR.',
       funcion		: 'VALIDA_LISTA_PRECIO',
@@ -95,7 +101,8 @@ exports.main = async(req, res, next)=>{
 		in_params	: ['COD_EMPRESA','COD_SUCURSAL','COD_LISTA_PRECIO','COD_ARTICULO'],
 		out_params: ['DESC_ARTICULO' 	     ,'COD_UNIDAD_MEDIDA','DESC_UNIDAD_MEDIDA',
                 'PRECIO_UNITARIO_C_IVA','PRECIO_UNITARIO_C_IVA_ANT'             ,
-                'FEC_VENCIMIENTO'      ,'MULT','DIV'
+                'FEC_VENCIMIENTO'      ,'MULT','DIV','COD_IVA','PORC_IVA'       ,
+                'PORC_GRAVADA'
               ],
     in_type:{},
     out_type:{
@@ -103,21 +110,40 @@ exports.main = async(req, res, next)=>{
       DIV                      : 'NUMBER',
       PRECIO_UNITARIO_C_IVA    : 'NUMBER',
       PRECIO_UNITARIO_C_IVA_ANT: 'NUMBER',
+      PORC_IVA                 : 'NUMBER',
+      PORC_GRAVADA             : 'NUMBER'
     }
   },{
 		campo			: 'COD_EMPRESA',
 		paquete		: 'EDS_VTPRESAR.',
 		funcion		: 'VALIDA_UM',
-		in_params	: ['COD_EMPRESA','COD_SUCURSAL','COD_ARTICULO','COD_UNIDAD_MEDIDA','DECIMALES','CANTIDAD','DESCUENTO','COD_LISTA_PRECIO'],                  
-		out_params: ['PRECIO_UNITARIO_C_IVA','DESC_UNIDAD_MEDIDA','MULT','DIV','PORC_DESC','CANTIDAD_UB','MONTO_TOTAL'],
-    in_type   : {CANTIDAD : 'NUMBER' , DESCUENTO: 'NUMBER', MONTO_TOTAL_C_IVA  : 'NUMBER'},
+		in_params	: ['COD_EMPRESA','COD_SUCURSAL','COD_ARTICULO','COD_UNIDAD_MEDIDA','DECIMALES','CANTIDAD','DESCUENTO','COD_LISTA_PRECIO','PORC_IVA','PORC_GRAVADA'],
+		out_params: ['DESC_UNIDAD_MEDIDA'
+                ,'PRECIO_UNITARIO'
+                ,'PRECIO_UNITARIO_C_IVA'
+                ,'MONTO_TOTAL'
+                ,'MONTO_TOTAL_CONIVA'
+                ,'TOTAL_IVA'
+                ,'PORC_DESC'
+                ,'CANTIDAD_UB'
+                ,'MULT'
+                ,'DIV'],
+    in_type   : { CANTIDAD          :'NUMBER' 
+                , DESCUENTO         :'NUMBER'
+                , MONTO_TOTAL_C_IVA :'NUMBER'
+                , PORC_IVA          :'NUMBER'
+                , PORC_GRAVADA      :'NUMBER'
+              },
     out_type:{
+      PRECIO_UNITARIO       : 'NUMBER',
       PRECIO_UNITARIO_C_IVA : 'NUMBER',
-      MULT        : 'NUMBER',
-      DIV         : 'NUMBER',
-      PORC_DESC   : 'NUMBER',
-      CANTIDAD_UB : 'NUMBER',
-      MONTO_TOTAL : 'NUMBER',
+      MONTO_TOTAL           : 'NUMBER',
+      MONTO_TOTAL_CONIVA    : 'NUMBER',
+      TOTAL_IVA             : 'NUMBER',
+      MULT                  : 'NUMBER',
+      DIV                   : 'NUMBER',
+      PORC_DESC             : 'NUMBER',
+      CANTIDAD_UB           : 'NUMBER',      
     },    
   }]
 

@@ -8,14 +8,16 @@ exports.main = async (req, res, next)  => {
   let COD_EMPRESA       = req.body.cod_empresa;
   let COD_UNIDAD_MEDIDA = req.body.valor;
 
-  let COD_ARTICULO          = dependencia.COD_ARTICULO          ? dependencia.COD_ARTICULO           : ''
-  let DECIMALES             = dependencia.DECIMALES             ? dependencia.DECIMALES              : 1
-  let CANTIDAD              = dependencia.CANTIDAD              ? dependencia.CANTIDAD               : ''
-  let DESCUENTO             = dependencia.DESCUENTO             ? dependencia.DESCUENTO              : ''
-  let COD_LISTA_PRECIO      = dependencia.COD_LISTA_PRECIO      ? dependencia.COD_LISTA_PRECIO       : ''
-  let COD_SUCURSAL          = dependencia.COD_SUCURSAL          ? dependencia.COD_SUCURSAL           : ''
+  let COD_ARTICULO     = dependencia.COD_ARTICULO      ? dependencia.COD_ARTICULO        : ''
+  let DECIMALES        = dependencia.DECIMALES         ? dependencia.DECIMALES           : 1
+  let CANTIDAD         = dependencia.CANTIDAD          ? dependencia.CANTIDAD            : ''
+  let DESCUENTO        = dependencia.DESCUENTO         ? dependencia.DESCUENTO           : ''
+  let COD_LISTA_PRECIO = dependencia.COD_LISTA_PRECIO  ? dependencia.COD_LISTA_PRECIO    : ''
+  let COD_SUCURSAL     = dependencia.COD_SUCURSAL      ? dependencia.COD_SUCURSAL        : ''
+  let PORC_IVA         = dependencia.PORC_IVA          ? dependencia.PORC_IVA            : ''
+  let PORC_GRAVADA     = dependencia.PORC_GRAVADA      ? dependencia.PORC_GRAVADA        : ''
     
-  let content 	= [{COD_EMPRESA,COD_SUCURSAL,COD_ARTICULO,COD_UNIDAD_MEDIDA,DECIMALES,CANTIDAD,DESCUENTO,COD_LISTA_PRECIO}];
+  let content 	= [{COD_EMPRESA,COD_SUCURSAL,COD_ARTICULO,COD_UNIDAD_MEDIDA,DECIMALES,CANTIDAD,DESCUENTO,COD_LISTA_PRECIO,PORC_IVA,PORC_GRAVADA}];
 
   let in_params = content.map( item => { return _.keys(item) });  
   var valida  	= [{
@@ -23,15 +25,32 @@ exports.main = async (req, res, next)  => {
 		paquete		: 'EDS_VTPRESAR.',
 		funcion		: 'VALIDA_UM',
 		in_params	: in_params[0],
-		out_params: ['PRECIO_UNITARIO_C_IVA','DESC_UNIDAD_MEDIDA','MULT','DIV','PORC_DESC','CANTIDAD_UB','MONTO_TOTAL'],
-    in_type   : {CANTIDAD : 'NUMBER' , DESCUENTO: 'NUMBER', MONTO_TOTAL_C_IVA  : 'NUMBER'},
+		out_params: ['DESC_UNIDAD_MEDIDA'
+                ,'PRECIO_UNITARIO'
+                ,'PRECIO_UNITARIO_C_IVA'
+                ,'MONTO_TOTAL'
+                ,'MONTO_TOTAL_CONIVA'
+                ,'TOTAL_IVA'
+                ,'PORC_DESC'
+                ,'CANTIDAD_UB'
+                ,'MULT'
+                ,'DIV'],
+    in_type   : { CANTIDAD          :'NUMBER' 
+                , DESCUENTO         :'NUMBER'
+                , MONTO_TOTAL_C_IVA :'NUMBER'
+                , PORC_IVA          :'NUMBER'
+                , PORC_GRAVADA      :'NUMBER'
+              },
     out_type:{
+      PRECIO_UNITARIO       : 'NUMBER',
       PRECIO_UNITARIO_C_IVA : 'NUMBER',
-      MULT        : 'NUMBER',
-      DIV         : 'NUMBER',
-      PORC_DESC   : 'NUMBER',
-      CANTIDAD_UB : 'NUMBER',
-      MONTO_TOTAL : 'NUMBER',
+      MONTO_TOTAL           : 'NUMBER',
+      MONTO_TOTAL_CONIVA    : 'NUMBER',
+      TOTAL_IVA             : 'NUMBER',
+      MULT                  : 'NUMBER',
+      DIV                   : 'NUMBER',
+      PORC_DESC             : 'NUMBER',
+      CANTIDAD_UB           : 'NUMBER',      
     },    
   }];
  

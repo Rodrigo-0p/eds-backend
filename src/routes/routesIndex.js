@@ -27,6 +27,7 @@ const vtfactur                  = require('./vt/movimiento/VTFACTUR'        );
 
 // CUENTA A COBRAR
 const ccrenagr                  = require('./cc/movimiento/cobranza/CCRENAGR');
+const ccnrdef                  = require('./cc/movimiento/cobranza/notaDeCredito/CCNRDEF');
 
 // STOCK DEFINICION
 const starticu                  = require('./st/definicion/STARTICU'        );
@@ -63,6 +64,8 @@ module.exports = function(){
     // CUENTA A COBRAR
     // MOVIMIENTO
     router.use( ccrenagr()      );
+    router.use( ccnrdef()       );
+    
 
     //STOCK DEFINICION
     router.use( starticu()      );

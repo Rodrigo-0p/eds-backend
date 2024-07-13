@@ -9,7 +9,6 @@ const {validateBooleanFunction} = require('../../../../../utils/validate'       
 
 
 exports.get_cod_persona  = async (req, res, next) => {
-  // var cod_empresa = req.params.cod_empresa;
   try {
     var sql = `select nvl(max(to_number(c.cod_persona)), 0) + 1 id
                 from bs_personas c`;
@@ -76,8 +75,8 @@ exports.main = async(req, res, next)=>{
     out_params : ['NRO_DIG_VER'],
    }
  ];
-
-  if(content.deleteCab.length !== 0){  
+ 
+  if(content.deleteCab.length === 0){  
     // VERIFICA NRO_DOCUMETO
     var result = await validateBooleanFunction(content.updateInserData, VALIDA_NRO_DOCUMETO, req)  
     if(result.valor){
@@ -90,10 +89,6 @@ exports.main = async(req, res, next)=>{
   let datosUpdate = await generate_update(req,'PERSONAS', content.updateInserData, [content.aux_updateInserData]);
   let datosDelete = await generate_delete(req,'PERSONAS', content.deleteCab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'BS', paquete:'eds_bsperson' }); 
  
-  // console.log(datosInsert)
-  // console.log(datosUpdate)
-  // console.log(datosDelete)
-
   try {
   var sql =   `
           BEGIN

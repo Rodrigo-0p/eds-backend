@@ -18,9 +18,13 @@ exports.main = async (req, res, next)  => {
                         , nvl(r.div, 1) div
                         , l.cod_lista_precio
                         , l.precio_fijo precio_unitario_c_iva 
+                        , i.cod_iva
+                        , nvl(i.porc_iva_compra,0) porc_iva
+                        , nvl(i.porc_gravadas,0) porc_gravada
                     from vt_precios_fijos_det l
                         , st_articulos a
                         , st_relaciones r
+                        , st_iva        i
                     where l.cod_empresa       =:p_cod_empresa
                       and l.cod_sucursal      =:p_cod_sucursal
                       
@@ -30,6 +34,9 @@ exports.main = async (req, res, next)  => {
                       and l.cod_empresa       = r.cod_empresa(+)
                       and l.cod_articulo      = r.cod_articulo(+)
                       and l.cod_unidad_medida = r.cod_unidad_rel(+)
+
+                      and a.cod_empresa       = i.cod_empresa(+)
+                      and a.cod_iva           = i.cod_iva(+)
 
                       and (a.cod_articulo  like '%' || :valor        || '%' or
                      upper(a.descripcion)  like '%' || upper(:valor) || '%' or :valor = 'null'
