@@ -16,7 +16,7 @@ var valida 		 = [{
     out_params : ['CON_NCE'            , 'COD_ZONA'        , 'COD_VENDEDOR'      , 'VENDEDOR_PERSONA'   ,
                   'COD_CONDICION_VENTA', 'COD_LISTA_PRECIO', 'COD_MONEDA'        , 'COD_DEPOSITO'       ,
                   'NOM_CLIENTE'        , 'DIR_CLIENTE'     , 'RUC'               , 'CI'                 ,
-                  'SER_REFERENCIA'     , 'TIP_REFERENCIA'  , 'NRO_COMPROBANTE'   , 'COD_MOTIVO_NCR'     ,
+                  'SER_REFERENCIA'     , 'TIP_REFERENCIA'  , 'NRO_REFERENCIA'    , 'COD_MOTIVO_NCR'     ,
                   'IND_TELEV'          , 'COD_SUPERVISOR'  , 'SUPERVISOR_PERSONA', 'TEL_CLIENTE'        ,
                   'NOM_CLIENTE'        , 'ESTADO'          , 'OBSERVACION'       , 'NRO_NCR_CLIENTE'    ,
                   'IND_VENTA'          , 'COD_MONEDA_REF'  , 'TIP_CAMBIO_REF'    , 'TOT_COMPROBANTE_REF' 

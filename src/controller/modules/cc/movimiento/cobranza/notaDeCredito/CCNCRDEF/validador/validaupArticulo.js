@@ -17,17 +17,17 @@ const { COD_SUCURSAL        = ''
       , IND_REG_TURISMO     = ''
       , CANTIDAD            = ''
       , COD_UNIDAD_MEDIDA   = ''} = dependencia
-
 let content 	 = [{ COD_EMPRESA      , COD_SUCURSAL   , COD_ARTICULO, CARGA_DETALLE
                   , PRECIO_VENTA     , COD_MONEDA     , IND_VENTA   , COD_CONDICION_VENTA
                   , COD_LISTA_PRECIO , IND_REG_TURISMO, CANTIDAD    , COD_UNIDAD_MEDIDA}];
+
 let in_params  = content.map( item => { return _.keys(item) });  
 var valida 		 = [{
     campo			 : 'COD_EMPRESA'        ,
     paquete		 : 'EDS_CCNCRDEF.'      ,
     funcion		 : 'UP_VALIDA_ARTICULO' ,
     in_params  : in_params[0]         ,
-    out_params : ['DESC_ARTICULO', 'COD_IVA'
+    out_params : ['DESC_ARTICULO'        , 'COD_IVA'
                  ,'PORC_IVA'             , 'PORC_GRAVADA' , 'COSTO_PROM'
                  ,'COSTO_ULTIMO'         , 'MULT'         , 'DIV'
                  ,'NRO_LOTE'             , 'IND_MANEJA_STOCK'

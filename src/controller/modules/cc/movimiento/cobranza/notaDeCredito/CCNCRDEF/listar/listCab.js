@@ -20,6 +20,7 @@ exports.main = async (req, res, next) => {
                 , NRO_COMPROBANTE
                 , INDICE, LIMITE
                };
+    console.log(data);
     let result = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));   
     result.rows = result.rows.shift().DATA;
     res.status(200).json( result );

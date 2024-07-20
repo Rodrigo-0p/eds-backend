@@ -3,7 +3,11 @@ const {log_error}                 = require('../../../../../../../../utils/logge
 const _                           = require('underscore')
 
 exports.main = async (req, res, next)  => {
-const { CANTIDAD = '',MULT = '', DIV = ''}	 = req.body;
+let dependencia  =  _.extend( ...req.body.dependencia );
+let CANTIDAD     = req.body.valor;
+let MULT         = dependencia ? dependencia.MULT : ''
+let DIV          = dependencia ? dependencia.DIV : ''
+
 let content 	 = [{CANTIDAD,MULT,DIV}];
 let in_params  = content.map( item => { return _.keys(item) });  
 var valida 		 = [{
