@@ -6,29 +6,19 @@
     "auditLog": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\.68d3e8839d483f3ac18cddc512bd16c66c6c0294-audit.json",
     "files": [
         {
-            "date": 1721085805222,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-15.log",
-            "hash": "4f2cfcff11f15542e4e3ceb367f8cbdef27f97f7b027f2dff1968610a279b4ea"
+            "date": 1722468714966,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-31.log",
+            "hash": "0e44b3c88515a58dc5e315e8a93e6e683cd08dee585a4ab9bdd2c6f6616de9cb"
         },
         {
-            "date": 1721153035363,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-16.log",
-            "hash": "0460149773265e49a393beb2c177a01b7055f12613794a8eb6544e35497f250f"
+            "date": 1722642709414,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-08-02.log",
+            "hash": "7f6c9aff1027eece7d750ea6f009784ddec2770223d035a5e916c3ed0481a883"
         },
         {
-            "date": 1721216603655,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-17.log",
-            "hash": "1f19dd8ab9af4b15975b544a2c215e3e9655b534f120c54e8ed2eea4ed7f19ca"
-        },
-        {
-            "date": 1721302887842,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-18.log",
-            "hash": "bf17ce911b144eef08e7c8e10fb3de344a449153ac11c1b584ae82f876dbfffb"
-        },
-        {
-            "date": 1721434055198,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-19.log",
-            "hash": "23c5feb915ebb6a809ca77cf83fd3ea6b8cea0ea750229ee1998f0784026b532"
+            "date": 1722900179599,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-08-05.log",
+            "hash": "84ed0d8da0c8a8644b242888280af3b9c3627c48cc7017835ff56656374dcfcc"
         }
     ],
     "hashType": "sha256"

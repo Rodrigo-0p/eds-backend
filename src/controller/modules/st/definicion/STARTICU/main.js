@@ -1,11 +1,12 @@
 const oracledb                  = require("oracledb");
-const db                        = require("../../../../../connection/conn"              );
-const crypto                    = require("../../../../../utils/crypto"                 );
-const { log_error}              = require('../../../../../utils/logger'                 );
-const { generate_delete }       = require('../../../../../utils/generate_delete_script' );
-const { generate_update }       = require('../../../../../utils/generate_update_script' );
-const { generate_insert }       = require('../../../../../utils/generate_insert_script' );
-const {validateBooleanFunction} = require('../../../../../utils/validate'               );
+const db                        = require("../../../../../connection/conn"          );
+const crypto                    = require("../../../../../utils/crypto"             );
+const { log_error}              = require('../../../../../utils/logger'             );
+const tableData                 = require('./tableDate');
+const { generate_update }       = require('../../../../../utility/generate_update'  );
+const { generate_insert }       = require('../../../../../utility/generate_insert'  );
+const { generate_delete }       = require('../../../../../utility/generate_delete'  );
+const {validateBooleanFunction} = require('../../../../../utils/validate'           );
 
 exports.get_cod_articulo  = async (req, res, next) => {
   const {cod_empresa} = req.params;
@@ -100,13 +101,31 @@ exports.main = async(req, res, next)=>{
     }
   }
 
-  let datosInsertCab = await generate_insert(req,'ST_ARTICULOS', content.updateInserData,{FEC_ALTA:'sysdate',COD_USUARIO_ALTA:`'${cod_usuario}'`,FEC_BAJA:null});
-  let datosUpdateCab = await generate_update(req,'ST_ARTICULOS', content.updateInserData, [content.aux_updateInserData]);
-  let datosDeleteCab = await generate_delete(req,'ST_ARTICULOS', content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_starticu' }); 
- 
-  let datosInsertDet = await generate_insert(req,'ST_RELACIONES', content.updateInserDataDet,{});
-  let datosUpdateDet = await generate_update(req,'ST_RELACIONES', content.updateInserDataDet, content.aux_updateInserDataDet,{IND_BASICO:'IND_BASICO_ANT',COD_UNIDAD_REL:'COD_UNIDAD_REL_ANT'});
-  let datosDeleteDet = await generate_delete(req,'ST_RELACIONES', content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'EDS_STARTICU' }); 
+  var datosInsertCab = "";
+  var datosUpdateCab = "";
+  var datosDeleteCab = "";
+
+  if(content.updateInserData.length > 0 || content.delete_cab.length > 0){
+    // CAB
+    let NameTableCab   = 'ST_ARTICULOS';
+    let tableCab       = tableData.find( item => item.table === NameTableCab);
+    datosInsertCab = await generate_insert(NameTableCab,content.updateInserData,{FEC_ALTA:'sysdate',COD_USUARIO_ALTA:`'${cod_usuario}'`,FEC_BAJA:null},tableCab.column);
+    datosUpdateCab = await generate_update(NameTableCab,content.updateInserData, [content.aux_updateInserData],{},{}, tableCab.column,  tableCab.pk);
+    datosDeleteCab = await generate_delete(NameTableCab,content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_starticu' }, tableCab.column,  tableCab.pk); 
+  }
+  
+  var datosInsertDet = "";
+  var datosUpdateDet = "";
+  var datosDeleteDet = "";
+
+  if(content.updateInserDataDet.length > 0 || content.delete_Det.length > 0){
+    // DET
+    let NameTableDet   = 'ST_RELACIONES';
+    let tableDet       = tableData.find( item => item.table === NameTableDet);
+    datosInsertDet = await generate_insert(NameTableDet,content.updateInserDataDet, {COD_EMPRESA:cod_empresa},tableDet.column);
+    datosUpdateDet = await generate_update(NameTableDet,content.updateInserDataDet, content.aux_updateInserDataDet,{IND_BASICO:'IND_BASICO_ANT',COD_UNIDAD_REL:'COD_UNIDAD_REL_ANT'},{}, tableDet.column,  tableDet.pk);
+    datosDeleteDet = await generate_delete(NameTableDet,content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'EDS_STARTICU' }, tableDet.column,  tableDet.pk);   
+  }
 
   try {
   var sql =   `

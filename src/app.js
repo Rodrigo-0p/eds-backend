@@ -61,5 +61,7 @@ app.use(function (req, res, next) {
 
 app.use('/', routes());
 app.use('/public',express.static(process.env.FILESTORE));
+app.use('/public',express.static(process.env.FILESTORE_IMG));
+
 
 module.exports = app;

@@ -28,6 +28,9 @@ const pqCab       = require('../../../controller/modules/st/definicion/STARTICU/
 
 // ABM
 const main        = require('../../../controller/modules/st/definicion/STARTICU/main'                       );
+// SAVE_IMG 
+const mainUpload  = require('../../../utility/upload/main');
+
 
 module.exports = function(){
   // ABMu
@@ -57,6 +60,8 @@ module.exports = function(){
   router.post('/st/starticu/valida/um'        , vUm.main          );    
   router.post('/st/starticu/valida/linea'     , vlinea.main       );    
   router.post('/st/starticu/valida/segmento'  , vcateg.main       );    
+  // SAVE IMG
+  router.post('/st/starticu/saveImg/:cod_empresa/:nameImg', mainUpload.main      );
 
   return router;
 }

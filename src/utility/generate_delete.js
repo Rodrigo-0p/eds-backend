@@ -53,7 +53,7 @@ exports.generate_delete = async(table_name, data, info, column, key) => {
           let key = pks[j];
           let keyValue = {...key}; 
           if(j == 0) sql += ` ${pks[j].COLUMN_NAME} = ${ valorNull(content[i][keyValue.COLUMN_NAME], col.DATA_TYPE) }`;
-          else sql += `\n   and ${pks[j].COLUMN_NAME} = ${ valorNull(content[i][keyValue.COLUMN_NAME], col.DATA_TYPE) }`;  
+          else sql += `\n   and ${pks[j].COLUMN_NAME} = ${ valorNull(content[i][keyValue.COLUMN_NAME], col.DATA_TYPE) }`;
         } 
       } 
       sql += `;\n`;
