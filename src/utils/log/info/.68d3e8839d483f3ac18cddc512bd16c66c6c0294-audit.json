@@ -6,19 +6,14 @@
     "auditLog": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\.68d3e8839d483f3ac18cddc512bd16c66c6c0294-audit.json",
     "files": [
         {
-            "date": 1722468714966,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-07-31.log",
-            "hash": "0e44b3c88515a58dc5e315e8a93e6e683cd08dee585a4ab9bdd2c6f6616de9cb"
+            "date": 1725924618028,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-09-09.log",
+            "hash": "de26683ce7b19355319835efd81b9574fe18cbc732ab7dd8ed08a985555336a8"
         },
         {
-            "date": 1722642709414,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-08-02.log",
-            "hash": "7f6c9aff1027eece7d750ea6f009784ddec2770223d035a5e916c3ed0481a883"
-        },
-        {
-            "date": 1722900179599,
-            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-08-05.log",
-            "hash": "84ed0d8da0c8a8644b242888280af3b9c3627c48cc7017835ff56656374dcfcc"
+            "date": 1726270774197,
+            "name": "C:\\eds\\eds-backend\\src\\utils\\log\\info\\info-2024-09-13.log",
+            "hash": "b026105603673a0c20b18b96bb7bb81ebfda68b4cbf562f48df1e81ae5b75ae8"
         }
     ],
     "hashType": "sha256"

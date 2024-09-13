@@ -166,7 +166,6 @@ exports.main = async(req, res, next)=>{
   let datosInserCab  = await generate_insert(NameTableCab, content.updateInserData, {COD_EMPRESA:cod_empresa,FEC_ALTA:'sysdate',COD_USUARIO:`'${cod_usuario}'`},tableCab.column);
   let datosUpdatCab  = await generate_update(NameTableCab, content.updateInserData, content.aux_updateInserData,{FEC_ESTADO:'sysdate'},{FEC_ESTADO:'sysdate'}, tableCab.column,  tableCab.pk);
   let deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_vtpresar' }, tableCab.column,  tableCab.pk); 
-
   // DET
   let NameTableDet   = 'VT_PRESUPUESTO_DET';
 	let tableDet       = tableData.find( item => item.table === NameTableDet);

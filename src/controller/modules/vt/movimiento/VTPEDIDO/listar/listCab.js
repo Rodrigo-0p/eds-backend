@@ -3,9 +3,6 @@ const crypto      = require("../../../../../../utils/crypto"   );
 const {log_error} = require('../../../../../../utils/logger'   );
 
 exports.main = async (req, res, next) => {
-
-  console.log('entro aqui ===> ');
-
   let { COD_EMPRESA = '', COD_SUCURSAL = '', NRO_COMPROBANTE = '',  INDICE , LIMITE } = req.body; 
   try {
     let sql = `select EDS_VTPEDIDO.listar_cabecera( :COD_EMPRESA

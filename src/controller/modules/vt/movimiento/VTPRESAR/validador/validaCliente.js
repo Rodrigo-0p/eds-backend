@@ -15,7 +15,7 @@ exports.main = async (req, res, next)  => {
 			paquete		 : 'EDS_VTPRESAR.'   ,
 			funcion		 : 'VALIDA_CLIENTE'  ,
 			in_params  : in_params[0]      ,
-      out_params : ['DESC_CLIENTE','RUC','TELEFONO','SEXO','DIRECCION' , 'DIREC_ELECTRONICA','ES_FISICA'],
+      out_params : ['NOM_CLIENTE','RUC','TELEFONO','SEXO','DIRECCION' , 'DIREC_ELECTRONICA','ES_FISICA'],
 		}];
 	try {
 		var response = await validateBooleanFunction(content, valida, req);	

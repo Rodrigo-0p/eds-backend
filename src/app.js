@@ -5,7 +5,6 @@ const morgan         = require('morgan');
 const routes         = require('./routes/routesIndex');
 const cors           = require('cors');
 const app            = express();
-const jwt            = require("jsonwebtoken");
 const moment         = require('moment');
 const validateToken = require('./routes/middlaware/middlaware');
 
@@ -24,6 +23,9 @@ app.use(express.urlencoded({limit: '5120mb', extended: true}));
 // CORS
 app.use(cors());
 
+app.use('/public',express.static(process.env.FILESTORE));
+app.use('/public',express.static(process.env.FILESTORE_IMG));
+
 app.use(function (req, res, next) {
     // Allow Origins
     res.header("Access-Control-Allow-Origin", "*");
@@ -37,6 +39,8 @@ app.use(function (req, res, next) {
       return res.status(200).end();
     }
         
+    console.log(req.path);
+
     if (req.path === '/api/auth/login' || req.path.slice(0, 7) === '/public') {
       return next();
     }
@@ -45,7 +49,6 @@ app.use(function (req, res, next) {
       // Next middleware
       const token = req.headers.authorization;
       console.log("Authorization:", token);
-      console.log(req.path);
       
       const ip = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
       var direccion_ip = ip.replace("::ffff:", "");
@@ -58,10 +61,6 @@ app.use(function (req, res, next) {
     res.status(500).json({ error: true, message: 'Error interno del servidor' });
   }        
 });
-
 app.use('/', routes());
-app.use('/public',express.static(process.env.FILESTORE));
-app.use('/public',express.static(process.env.FILESTORE_IMG));
-
 
 module.exports = app;

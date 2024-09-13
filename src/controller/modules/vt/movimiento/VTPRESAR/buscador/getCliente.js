@@ -13,7 +13,7 @@ exports.main = async (req, res, next) => {
   
   try {
        var sql =` select c.cod_cliente
-                       , p.nombre desc_cliente
+                       , p.nombre nom_cliente
                        , nvl(p.ruc,p.nro_documento) ruc
                        , p.telefono
                        , p.sexo
