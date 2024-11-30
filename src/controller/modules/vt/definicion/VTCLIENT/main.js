@@ -37,7 +37,6 @@ exports.get_sub_cliente  = async (req, res, next) => {
     next();
   }
 }
-
 exports.main = async(req, res, next)=>{
   var content      = req.body;
   const ip         = req.headers['cf-connecting-ip'] || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
@@ -45,52 +44,86 @@ exports.main = async(req, res, next)=>{
   var cod_usuario  = content.AditionalData[0].cod_usuario;
   var cod_empresa  = content.AditionalData[0].cod_empresa;
   
-  var VALIDA = [
-    {
-			campo			 : 'COD_PERSONA'    ,
-			paquete		 : 'EDS_VTCLIENT.'  ,
-			funcion		 : 'VALIDA_CAUSAL'  ,
-			in_params  : ['COD_CAUSAL','BLOQUEAR_CLIENTE'],
-      out_params : ['DESC_CAUSAL']  ,
-		},{
-			campo			 : 'COD_GRUPO_CLIENTE'    ,
-			paquete		 : 'EDS_VTCLIENT.'        ,
-			funcion		 : 'VALIDA_GRUPO_CLIENTE' ,
-			in_params  : ['COD_EMPRESA','COD_GRUPO_CLIENTE'],
-      out_params : ['DESC_GRUPO_CLIENTE'] ,
-		}
-  ]
+  let datosInsertCab = '';
+  let datosUpdateCab = '';
+  let datosDeleteCab = '';
 
-  if(content.delete_cab.length === 0){  
-    var result = await validateBooleanFunction(content.updateInserData, VALIDA, req)
-    if(result.valor){
-      res.json({'ret': 0,'p_mensaje':result.p_mensaje})
-      return
-    }    
+  if(content.updateInserData.length > 0 || content.delete_cab.length > 0){
+    var VALIDA = [
+      {
+        campo			 : 'COD_PERSONA'    ,
+        paquete		 : 'EDS_VTCLIENT.'  ,
+        funcion		 : 'VALIDA_CAUSAL'  ,
+        in_params  : ['COD_CAUSAL','BLOQUEAR_CLIENTE'],
+        out_params : ['DESC_CAUSAL']  ,
+      },{
+        campo			 : 'COD_GRUPO_CLIENTE'    ,
+        paquete		 : 'EDS_VTCLIENT.'        ,
+        funcion		 : 'VALIDA_GRUPO_CLIENTE' ,
+        in_params  : ['COD_EMPRESA','COD_GRUPO_CLIENTE'],
+        out_params : ['DESC_GRUPO_CLIENTE'] ,
+      }
+    ]
+    if(content.delete_cab.length === 0){
+      var result = await validateBooleanFunction(content.updateInserData, VALIDA, req)
+      if(result.valor){
+        res.json({'ret': 0,'p_mensaje':result.p_mensaje})
+        return
+      }    
+    }
+
+    datosInsertCab = await generate_insert(req,'CC_CLIENTES', content.updateInserData,{FEC_ALTA:'sysdate',COD_USUARIO_ALTA:`'${cod_usuario}'`,FEC_BAJA:null});
+    datosUpdateCab = await generate_update(req,'CC_CLIENTES', content.updateInserData, [content.aux_updateInserData]);
+    datosDeleteCab = await generate_delete(req,'CC_CLIENTES', content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtclient' }); 
   }
 
-  let datosInsertCab = await generate_insert(req,'CC_CLIENTES', content.updateInserData,{FEC_ALTA:'sysdate',COD_USUARIO_ALTA:`'${cod_usuario}'`,FEC_BAJA:null});
-  let datosUpdateCab = await generate_update(req,'CC_CLIENTES', content.updateInserData, [content.aux_updateInserData]);
-  let datosDeleteCab = await generate_delete(req,'CC_CLIENTES', content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtclient' }); 
- 
-  let datosInsertDet = await generate_insert(req,'CC_SUBCLIENTES', content.updateInserDataDet,{ FEC_CADUCIDAD : null
-                                                                                              , COD_SUPERPRO  : null
-                                                                                              , LATITUD_COB   : null
-                                                                                              , LONGITUD_COB  : null
-                                                                                              , IND_COBERTURA : null
-                                                                                              });
-  let datosUpdateDet = await generate_update(req,'CC_SUBCLIENTES', content.updateInserDataDet, content.aux_updateInserDataDet,{COD_SUBCLIENTE:'COD_SUBCLIENTE_ANT'});
-  let datosDeleteDet = await generate_delete(req,'CC_SUBCLIENTES', content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtclient' }); 
+  let datosInsertDet = '';
+  let datosUpdateDet = '';
+  let datosDeleteDet = '';
 
-  // console.log('==>',datosInsertCab)
-  // console.log('==>',datosUpdateCab)
-  // console.log('==>',datosDeleteCab)
+  if(content.updateInserDataDet.length > 0 || content.delete_Det.length > 0){
+    var VALIDA = [
+      {
+        campo			 : 'COD_PAIS'       ,
+        paquete		 : 'EDS_VTCLIENT.' 	,
+        funcion		 : 'VALIDA_PAIS'		,
+        in_params  : ['COD_PAIS']     ,
+        out_params : ['DESC_PAIS']	  ,
+      },
+      {
+        campo			 : 'COD_PROVINCIA'   	,
+        paquete		 : 'EDS_VTCLIENT.'   	,
+        funcion		 : 'VALIDA_PROVINCIAS',
+        in_params  : ['COD_PAIS','COD_PROVINCIA'],
+        out_params : ['DESC_PROVINCIA']	,
+      },
+      {
+        campo			 : 'COD_CIUDAD'    ,
+        paquete		 : 'EDS_VTCLIENT.' ,
+        funcion		 : 'VALIDA_CIUDAD' ,
+        in_params  : ['COD_PAIS'
+                    , 'COD_PROVINCIA'
+                    , 'COD_CIUDAD']  ,
+        out_params : ['DESC_CIUDAD'],
+      }
+    ]
+    if(content.delete_Det.length === 0){
+      var result = await validateBooleanFunction(content.updateInserDataDet, VALIDA, req)
+      if(result.valor){
+        res.json({'ret': 0,'p_mensaje':result.p_mensaje})
+        return
+      }    
+    }
+    datosInsertDet = await generate_insert(req,'CC_SUBCLIENTES', content.updateInserDataDet,{ FEC_CADUCIDAD : null
+                                                                                            , COD_SUPERPRO  : null
+                                                                                            , LATITUD_COB   : null
+                                                                                            , LONGITUD_COB  : null
+                                                                                            , IND_COBERTURA : null
+                                                                                            });
+    datosUpdateDet = await generate_update(req,'CC_SUBCLIENTES', content.updateInserDataDet, content.aux_updateInserDataDet,{COD_SUBCLIENTE:'COD_SUBCLIENTE_ANT'});
+    datosDeleteDet = await generate_delete(req,'CC_SUBCLIENTES', content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtclient' }); 
+  }
 
-  // console.log('==>',datosInsertDet)
-  // console.log('==>',datosUpdateDet)
-  // console.log('==>',datosDeleteDet)
-
-  // return
   try {
   var sql =   `
           BEGIN

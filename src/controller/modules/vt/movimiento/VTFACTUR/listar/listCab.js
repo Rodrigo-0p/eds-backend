@@ -28,7 +28,6 @@ exports.main = async (req, res, next) => {
                   LIMITE
                 };
     
-    console.log( data );
 
     let result = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass)); 
     result.rows = result.rows.shift().DATA;

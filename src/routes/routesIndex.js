@@ -27,6 +27,8 @@ const vtfactur                  = require('./vt/movimiento/VTFACTUR'        );
 
 // CUENTA A COBRAR
 const ccrenagr                  = require('./cc/movimiento/cobranza/CCRENAGR');
+const ccmovcaj                  = require('./cc/movimiento/cobranza/CCMOVCAJ');
+// --
 const ccnrdef                   = require('./cc/movimiento/notaDeCredito/CCNRDEF');
 const cccancaj                  = require('./cc/movimiento/ventaBalcon/CCCANCAJ');
 
@@ -65,10 +67,10 @@ module.exports = function(){
     // CUENTA A COBRAR
     // MOVIMIENTO
     router.use( ccrenagr()      );
+    router.use( ccmovcaj()      );
+    // --
     router.use( ccnrdef()       );
-    router.use( cccancaj()      );
-    
-    
+    router.use( cccancaj()      );    
 
     //STOCK DEFINICION
     router.use( starticu()      );

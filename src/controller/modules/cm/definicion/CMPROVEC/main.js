@@ -71,16 +71,16 @@ exports.abm = async(req, res, next)=>{
       //   campo			 : 'COD_BANCO'             ,
       //   paquete		 : 'EDS_CMPROVEC.'         ,
       //   funcion		 : 'VALIDA_BANCO'          ,
-      //   in_params  : ['COD_BANCO']           ,
-      //   out_params : ['DESC_BANCO']          ,
+      //   in_params  : ['COD_BANCO']            ,
+      //   out_params : ['DESC_BANCO']           ,
       // },
       // {
-      // 	campo			 : 'COD_CUENTA_CONT'       ,
+      // 	campo			 : 'COD_CUENTA_CONT'         ,
 			//   paquete		 : 'EDS_CMPROVEC.'         ,
 			//   funcion		 : 'VALIDA_CUENT_CONT'     ,
 			//   in_params  : ['COD_EMPRESA'
-      //                ,'COD_CUENTA_CONT']     ,
-      //   out_params : ['DESC_CUENTA_REF']     ,
+      //                ,'COD_CUENTA_CONT']      ,
+      //   out_params : ['DESC_CUENTA_REF']      ,
       // },{
       //   campo			 : 'COD_CUENT_CONTABLE'     ,
       //   paquete		 : 'EDS_CMPROVEC.'  				,
@@ -100,9 +100,8 @@ exports.abm = async(req, res, next)=>{
   }
     
   let datosInsert = await generate_insert(req,'CM_DATOS_PROVEEDORES', content.updateInserData, {COD_USUARIO:`'${cod_usuario}'`, FEC_ALTA:'sysdate'});
-  let datosUpdate = await generate_update(req,'CM_DATOS_PROVEEDORES', content.updateInserData, content.aux_updateInserData);
+  let datosUpdate = await generate_update(req,'CM_DATOS_PROVEEDORES', content.updateInserData, content.aux_updateInserData,{},{},{FEC_MODIFICACION:'sysdate', MODIFICADO_POR:`'${cod_usuario}'`});
   let datosDelete = await generate_delete(req,'CM_DATOS_PROVEEDORES', content.deleteCab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'CM', paquete:'eds_cmprovec' }); 
- 
 
   try {
   var sql =   `

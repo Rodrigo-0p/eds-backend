@@ -4,7 +4,6 @@ const _                     = require('underscore')
 exports.main = async (req, res, next)  => {
   const { COD_EMPRESA, NOM_FORMA  } = req.body; 
   let content 	= [{COD_EMPRESA, NOM_FORMA}];
-	console.log( content );
   var valida 		= [{
 		campo			: 'NOM_FORMA',
 		paquete		: 'EDS_VTFACTUR.',

@@ -47,8 +47,9 @@ exports.main = async(req, res, next)=>{
     }    
   }
 
+  let datosUpdate    = {COD_PERSONA:'COD_PERSONA_ANT'}
   let datosInsertCab = await generate_insert(req,'VT_VENDEDORES', content.updateInserData,{FEC_ALTA:'sysdate',COD_USUARIO_ALTA:`'${cod_usuario}'`});
-  let datosUpdateCab = await generate_update(req,'VT_VENDEDORES', content.updateInserData,[content.aux_updateInserData],{FEC_MODI:'sysdate',COD_USUARIO_MODI:`'${cod_usuario}'`});
+  let datosUpdateCab = await generate_update(req,'VT_VENDEDORES', content.updateInserData,[content.aux_updateInserData],datosUpdate,{FEC_MODI:'sysdate',COD_USUARIO_MODI:`'${cod_usuario}'`});
   let datosDeleteCab = await generate_delete(req,'VT_VENDEDORES', content.deleteCab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtvende' }); 
  
   try {

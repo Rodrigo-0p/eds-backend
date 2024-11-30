@@ -19,9 +19,6 @@ exports.main = async (req, res, next) => {
                   LIMITE
                 };
     let result = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass)); 
-
-    console.log( ' ===> ', result );
-
     result.rows = result.rows.shift().DATA;
     res.status(200).json( result );
   } catch (error) {

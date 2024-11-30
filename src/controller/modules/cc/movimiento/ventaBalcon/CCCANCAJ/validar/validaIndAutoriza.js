@@ -11,8 +11,7 @@ exports.main = async (req, res, next)  => {
 										 IND_BLOQUEADO, COBRAR_EFE		 , COD_CLIENTE		, COD_USUARIO		 ,
 										 IND_AUTORIZAR,
 										}];
-
-
+										
   let in_params  = content.map( item => { return _.keys(item) });  
     var valida 		 = [{
 			campo			 : 'TIP_COMPROBANTE'    ,

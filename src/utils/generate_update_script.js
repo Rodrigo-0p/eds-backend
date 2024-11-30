@@ -90,15 +90,12 @@ const comparar = async(data, aux, columns) => {
   }
   
 }
-exports.generate_update = async(req, table_name, data, auxData, auxKey = [], opcion = {} ) => {
+exports.generate_update = async(req, table_name, data, auxData, auxKey = [], opcion = {}, addObjeto ={} ) => {
   let sql = '';
   
-  // console.log(data);
-  
   let content = data.filter( item => item.updated );
-  
-
   let array_opcion = Object.keys(opcion);
+  let array_add    = Object.keys(addObjeto);
   if(content.length > 0){
     let columns = await getTableInfo(req, table_name);
     let pks = await getTablePK(req, table_name);
@@ -123,12 +120,17 @@ exports.generate_update = async(req, table_name, data, auxData, auxKey = [], opc
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
         const type = columns.find(item => item.COLUMN_NAME == key );
-        if(_.contains(array_opcion, key )){
+        if(_.contains(array_opcion, key ) ){
           if(i == 0) sql += `${key} = ${ opcion[key] } `;
           else sql += `\n     , ${key} = ${ opcion[key] } `;
         }else{
           if(i == 0) sql += `${key} = ${ valorNull(element[key], type.DATA_TYPE ) } `;
           else sql += `\n     , ${key} = ${ valorNull(element[key], type.DATA_TYPE ) } `;
+        }
+        if(array_add.length > 0){
+          array_add.map((key)=>{
+            sql += `\n    ,  ${key} = ${ addObjeto[key] }`;
+          })
         }      
       }
       sql += `\n where `;

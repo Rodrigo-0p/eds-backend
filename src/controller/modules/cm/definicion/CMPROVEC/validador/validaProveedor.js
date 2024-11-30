@@ -18,9 +18,6 @@ exports.main = async (req, res, next)  => {
 		}];
 	try {
 		var response = await validateBooleanFunction(content, valida, req);	
-
-		console.log(response);
-
     res.status(200).json(response.data);
 	} catch (error) {
 		log_error.error(`EDS_CMPROVEC: VALIDA_PROVEEDOR_REF : ${error} `);;

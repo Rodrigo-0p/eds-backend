@@ -11,7 +11,7 @@ const {validateBooleanFunction} = require('../../../../../utils/validate'       
 exports.get_cod_persona  = async (req, res, next) => {
   try {
     var sql = `select nvl(max(to_number(c.cod_persona)), 0) + 1 id
-                from bs_personas c`;
+                from personas c`;
   const response = await db.Open(sql,[],true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));
   res.status(200).json(response);
   } catch (error) {
@@ -86,7 +86,7 @@ exports.main = async(req, res, next)=>{
   }
 
   let datosInsert = await generate_insert(req,'PERSONAS', content.updateInserData, {FEC_ALTA:'sysdate'});
-  let datosUpdate = await generate_update(req,'PERSONAS', content.updateInserData, [content.aux_updateInserData]);
+  let datosUpdate = await generate_update(req,'PERSONAS', content.updateInserData, [content.aux_updateInserData],{},{FEC_ACTUALIZACION:'sysdate'});
   let datosDelete = await generate_delete(req,'PERSONAS', content.deleteCab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'BS', paquete:'eds_bsperson' }); 
  
   try {

@@ -29,28 +29,28 @@ const main            = require('../../../controller/modules/cm/definicion/CMPRO
 
 module.exports = function(){
   // main
-  router.get('/cm/cmprovec/cod_proveedor/:cod_empresa',main.get_cod_persona );
-  router.post('/cm/cmprovec'                         , main.abm              );
+  router.get('/cm/cmprovec/cod_proveedor/:cod_empresa', main.get_cod_persona  );
+  router.post('/cm/cmprovec'                          , main.abm              );
   // LISTAR 
-  router.post('/cm/cmprovec/list/proveedor'         , lcab.main             );  
+  router.post('/cm/cmprovec/list/proveedor'           , lcab.main             );  
   // Buscadores
-  router.post('/cm/cmprovec/buscar/modificaDiaAnt'  , bModificaDiaAnt.main  );
-  router.post('/cm/cmprovec/buscar/persona'         , bpersona.main         );
-  router.post('/cm/cmprovec/buscar/proveedorRef'    , bproveedor.main       );
-  router.post('/cm/cmprovec/buscar/cuentaContable'  , bcuentaContable.main  );
-  router.post('/cm/cmprovec/buscar/cuentaCont'      , bcuentaCont.main      );
-  router.post('/cm/cmprovec/buscar/banco'           , bbanco.main           );
-  router.post('/cm/cmprovec/buscar/codCompra'       , bcodCompras.main      );
-  router.post('/cm/cmprovec/buscar/moneda'          , bcodMonedas.main      );
+  router.post('/cm/cmprovec/buscar/modificaDiaAnt'    , bModificaDiaAnt.main  );
+  router.post('/cm/cmprovec/buscar/persona'           , bpersona.main         );
+  router.post('/cm/cmprovec/buscar/proveedorRef'      , bproveedor.main       );
+  router.post('/cm/cmprovec/buscar/cuentaContable'    , bcuentaContable.main  );
+  router.post('/cm/cmprovec/buscar/cuentaCont'        , bcuentaCont.main      );
+  router.post('/cm/cmprovec/buscar/banco'             , bbanco.main           );
+  router.post('/cm/cmprovec/buscar/codCompra'         , bcodCompras.main      );
+  router.post('/cm/cmprovec/buscar/moneda'            , bcodMonedas.main      );
   // Validadores
-  router.post('/cm/cmprovec/valida/persona'         , vpersona.main         );
-  router.post('/cm/cmprovec/valida/proveedorRef'    , vproveedor.main       );
-  router.post('/cm/cmprovec/valida/cuentaContable'  , vcuentaContable.main  );
-  router.post('/cm/cmprovec/valida/cuentaCont'      , vcuentaCont.main      );
-  router.post('/cm/cmprovec/valida/banco'           , vbanco.main           );
-  router.post('/cm/cmprovec/valida/codCompra'       , vcodCompra.main       );
-  router.post('/cm/cmprovec/valida/moneda'          , vcodMoneda.main       );
-  router.post('/cm/cmprovec/valida/limiteRendicion' , vlimitRendicion.main  );
+  router.post('/cm/cmprovec/valida/persona'           , vpersona.main         );
+  router.post('/cm/cmprovec/valida/proveedorRef'      , vproveedor.main       );
+  router.post('/cm/cmprovec/valida/cuentaContable'    , vcuentaContable.main  );
+  router.post('/cm/cmprovec/valida/cuentaCont'        , vcuentaCont.main      );
+  router.post('/cm/cmprovec/valida/banco'             , vbanco.main           );
+  router.post('/cm/cmprovec/valida/codCompra'         , vcodCompra.main       );
+  router.post('/cm/cmprovec/valida/moneda'            , vcodMoneda.main       );
+  router.post('/cm/cmprovec/valida/limiteRendicion'   , vlimitRendicion.main  );
  
   return router;
 }
