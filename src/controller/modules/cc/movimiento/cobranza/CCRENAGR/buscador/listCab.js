@@ -16,7 +16,7 @@ exports.main = async (req, res, next) => {
         VEN             = "N"  , NRO_CUENTA      ="" , COD_CLIENTE  ="" , 
         FECHA_DESDE     = false, FECHA_HASTA     = false, 
         TIP_COMPROBANTE = ''   , FEC_COMPROBANTE = '',
-        NRO_COMPROBANTE = ''   , COD_CLIENT      = '', COD_CLIENTE_REF = '',
+        NRO_COMPROBANTE = ''   
       } = req.body;
       
   try {
