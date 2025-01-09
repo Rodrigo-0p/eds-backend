@@ -7,7 +7,6 @@ exports.main = async (req, res, next) => {
   
   try {
     let sql = `select EDS_VTLISPRE.listar_detalle( :COD_EMPRESA, :COD_SUCURSAL, :COD_LISTA_PRECIO) as data from dual`;
-
     let data = { COD_EMPRESA,COD_SUCURSAL, COD_LISTA_PRECIO};
     let result = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));   
     result.rows = result.rows.shift().DATA;

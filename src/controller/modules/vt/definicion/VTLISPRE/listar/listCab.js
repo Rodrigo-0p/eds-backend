@@ -19,8 +19,7 @@ exports.main = async (req, res, next) => {
                , COD_LISTA_PRECIO
                , COD_MONEDA
                , INDICE
-               , LIMITE};
-               
+               , LIMITE};      
     let result = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));   
     result.rows = result.rows.shift().DATA;
     res.status(200).json( result );
