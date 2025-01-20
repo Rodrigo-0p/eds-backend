@@ -14,8 +14,7 @@ exports.main = async (req, res, next)  => {
     funcion     : 'POST_QUERY_CABECERA',
     in_params   : in_params[0]         ,
     out_params: ['DESC_MONEDA'
-                ,'DECIMALES'
-                ],
+                ,'DECIMALES'],
     out_type   : {'DECIMALES' :'NUMBER'},
   }];  
   try {

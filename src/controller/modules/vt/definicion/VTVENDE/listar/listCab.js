@@ -1,6 +1,6 @@
-const db             = require("../../../../../../connection/conn");
-const crypto         = require("../../../../../../utils/crypto");
-const {logger_error} = require('../../../../../../utils/logger')
+const db          = require("../../../../../../connection/conn");
+const crypto      = require("../../../../../../utils/crypto");
+const {log_error} = require('../../../../../../utils/logger')
 
 exports.main = async (req, res, next)=>{
   var value       = req.body.value;
@@ -45,11 +45,12 @@ exports.main = async (req, res, next)=>{
                               and :value = 'null' \n`;
                   query += `order by lpad(p.cod_vendedor,10,'0') desc`
               }
-      var data = {cod_empresa, value};    
+      var data = {cod_empresa, value};
       const response = await db.Open(query, data,true, req.headers.authuser, await crypto.decrypt(req.headers.authpass) );
       res.status(200).json(response);
   } catch (error) {
-      console.log(error);
+      log_error.error(`error de ${error}`)
+      console.log(error);      
       next();
   }    
 }

@@ -33,6 +33,8 @@ exports.main = async (req, res, next) => {
       }
     );
 
+    console.log(COD_EMPRESA,'=', COD_CLIENTE,'=',TIP_COMPR_REF,'=',NRO_COMPR_REF,'=',COD_USUARIO);
+
     if (result.outBinds.p_mensaje) {
       return res.status(400).json({
         p_mensaje: result.outBinds.p_mensaje,

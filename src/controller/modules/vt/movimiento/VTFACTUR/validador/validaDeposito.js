@@ -5,7 +5,6 @@ exports.main = async (req, res, next)  => {
 let { COD_EMPRESA, COD_SUCURSAL, COD_LISTA_PRECIO }	 = req.body; 
 let COD_DEPOSITO = req.body.valor ? req.body.valor : ''
 let content 	  = [{COD_EMPRESA,COD_SUCURSAL,COD_LISTA_PRECIO,COD_DEPOSITO}];
-console.log( content );
 let in_params   = content.map( item => { return _.keys(item) });  
 var valida 		 = [{
     campo			 : 'COD_DEPOSITO',

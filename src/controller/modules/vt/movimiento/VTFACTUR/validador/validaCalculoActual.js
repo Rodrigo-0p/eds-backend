@@ -3,8 +3,8 @@ const {log_error}                 = require('../../../../../../utils/logger');
 const _                           = require('underscore')
 exports.main = async (req, res, next, band = false )  => {
   let dependencia = _.extend( ...req.body.dependencia);
-	let DECIMALES	            = dependencia.DECIMALES;
-  let MULT	                = dependencia.MULT;
+	let DECIMALES	          = dependencia.DECIMALES;
+  let MULT	                  = dependencia.MULT;
 	let DIV                   = dependencia.DIV;
 	let IND_TIPO              = 'N';
 	let IND_VENTA             = 'N';

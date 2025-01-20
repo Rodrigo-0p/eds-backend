@@ -12,10 +12,9 @@ exports.main = async (req, res, next)  => {
   let IND_REG_TURISMO  = 'N' // dependencia.IND_REG_TURISMO;
   let IND_VENTA        = 'S';
   let IND_COND_VTA     = '01';
-  let COD_LISTA_PRECIO = '01' // dependencia.COD_LISTA_PRECIO;
-  let COD_GRUP_VEND    = '401';
-  let COD_ARTICULO     = req.body.valor ? req.body.valor : '';
-  // let content 	     = [{COD_EMPRESA,COD_SUCURSAL,COD_ARTICULO}];
+  let COD_LISTA_PRECIO = dependencia.COD_LISTA_PRECIO;
+  let COD_GRUP_VEND    = dependencia.COD_VENDEDOR;
+  let COD_ARTICULO     = req.body.valor ? req.body.valor : ''; 
   let content 	       = [{ COD_EMPRESA    , COD_SUCURSAL , COD_CLIENTE, 
                             COD_SUBCLIENTE , TIP_CLIENTE  , IND_REG_TURISMO, 
                             IND_VENTA      , IND_COND_VTA , COD_LISTA_PRECIO, 
@@ -57,6 +56,9 @@ exports.main = async (req, res, next)  => {
   try {
     var response = await validateBooleanFunction(content, valida, req);  
     if( response.data.outBinds.ret === 1 ){
+
+      console.log('entro aqui ==> ');
+
       req.body.dependencia = [ ...req.body.dependencia, { COD_ARTICULO: response.data.outBinds.COD_ARTICULO}, {PORC_IVA: response.data.outBinds.PORC_IVA},{PORC_GRAVADA: response.data.outBinds.PORC_GRAVADA}]
       req.body.valor = response.data.outBinds.COD_UNIDAD_MEDIDA;
       let outs = await UnidadMedida.main( req, res, next, true ); 

@@ -4,9 +4,9 @@ const {log_error} = require('../../../utils/logger');
 exports.permisos_menu = async (cod_usuario,password,next)=>{
     try {
         var sql =   `  select c.*
-                            from bsv_acceso_sistema c
+                         from bsv_acceso_sistema c
                         where cod_usuario =:p_cod_usuario
-                            and nvl(c.mostrar_menu  , 'N') = 'S'
+                          and nvl(c.mostrar_menu,'N') = 'S'
                         order by orden_padre
                             , orden_menu
                             , orden_nodo

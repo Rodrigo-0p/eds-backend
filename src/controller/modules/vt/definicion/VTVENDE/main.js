@@ -53,7 +53,7 @@ exports.main = async(req, res, next)=>{
   let datosDeleteCab = await generate_delete(req,'VT_VENDEDORES', content.deleteCab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtvende' }); 
  
   try {
-  var sql =   `
+   var sql =   `
           BEGIN
               :ret := EDS_VTVENDE.abm_vtvende ( :p_deleteCab,
                                                 :p_updateCab,

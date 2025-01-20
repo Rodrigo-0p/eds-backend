@@ -3,42 +3,41 @@ const {log_error}           = require('../../../../../../utils/logger');
 const _                     = require('underscore')
 
 exports.main = async (req, res, next)  => {
-  let { COD_EMPRESA         = '', 
-        COD_SUCURSAL        = '', 
-        TIP_COMPROBANTE     = '', 
-        SER_COMPROBANTE     = '',
-        NRO_COMPROBANTE     = '',
-        COD_CLIENTE         = '',
-        COD_SUBCLIENTE      = '',
-        COD_VENDEDOR        = '',
-        VENDEDOR_PERSONA    = '',
-        COD_LISTA_PRECIO    = '',
+  let { COD_EMPRESA = '', 
+        COD_SUCURSAL = '', 
+        TIP_COMPROBANTE = '', 
+        SER_COMPROBANTE = '',
+        NRO_COMPROBANTE = '',
+        COD_CLIENTE = '',
+        COD_SUBCLIENTE = '',
+        COD_VENDEDOR = '',
+        VENDEDOR_PERSONA = '',
+        COD_LISTA_PRECIO = '',
         COD_CONDICION_VENTA = '',
-        COD_MONEDA          = '',
-        COD_MONEDA_BASE     = '',
-        COD_DEPOSITO        = '',
-        COD_ZONA            = '',
-        PORC_DESC_FIN       = '',
-        PORC_DESC_VAR       = ''
+        COD_MONEDA = '',
+        COD_MONEDA_BASE = '',
+        COD_DEPOSITO = '',
+        COD_ZONA = '',
+        PORC_DESC_FIN = '',
+        PORC_DESC_VAR = ''
      } = req.body;
   let content = [{ 
-		  COD_EMPRESA        
-		, COD_SUCURSAL       
-    , TIP_COMPROBANTE    
-    , SER_COMPROBANTE    
-    , NRO_COMPROBANTE    
-    , COD_CLIENTE        
-    , COD_SUBCLIENTE     
-    , COD_VENDEDOR       
-    , VENDEDOR_PERSONA   
-    , COD_LISTA_PRECIO   
-    , COD_CONDICION_VENTA
-    , COD_MONEDA         
-    , COD_MONEDA_BASE    
-    , COD_DEPOSITO       
-		, COD_ZONA           
-    , PORC_DESC_FIN      
-    , PORC_DESC_VAR
+		COD_EMPRESA,
+		COD_SUCURSAL,
+    TIP_COMPROBANTE,
+    SER_COMPROBANTE,
+    NRO_COMPROBANTE,
+    COD_CLIENTE,
+    COD_SUBCLIENTE,
+    COD_VENDEDOR,
+    VENDEDOR_PERSONA,
+    COD_LISTA_PRECIO,
+    COD_CONDICION_VENTA,
+    COD_MONEDA,
+    COD_MONEDA_BASE,
+    COD_DEPOSITO,
+    PORC_DESC_FIN,
+    PORC_DESC_VAR
 	}];
   let in_params = content.map( item => { return _.keys(item) });  
   var valida  = [{
@@ -56,7 +55,6 @@ exports.main = async (req, res, next)  => {
                 	, 'DESC_DEPOSITO' 
                 	, 'DESCIMALES' 
                 	, 'SIGLAS' 
-                	, 'DESC_ZONA' 
                 	, 'IND_VTA_ESP' 
                 	, 'COD_TIPO' 
                 	, 'IVA5' 

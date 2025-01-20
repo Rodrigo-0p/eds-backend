@@ -113,7 +113,12 @@ module.exports = [
       {COLUMN_NAME:'IND_PRONT_ENT',DATA_TYPE:'VARCHAR2'}, 
       {COLUMN_NAME:'TIPTRA',DATA_TYPE:'VARCHAR2'}
     ],
-    pk: [],
+    pk: [
+      { COLUMN_NAME: 'COD_EMPRESA'    , POSITION: 1 },
+      { COLUMN_NAME: 'TIP_COMPROBANTE', POSITION: 2 },
+      { COLUMN_NAME: 'SER_COMPROBANTE', POSITION: 3 },
+      { COLUMN_NAME: 'NRO_COMPROBANTE', POSITION: 4 }
+    ],
   },
   {
     table: 'VT_PEDIDOS_DETALLE',

@@ -70,7 +70,6 @@ exports.main = async (req, res, next)  => {
       let outs = await UnidadMedida.main( req, res, next, true ); 
       response.data.outBinds = { ...response.data.outBinds, ...outs.outBinds };
     }
-    console.log( ' ====> ', response.data.outBinds );
     res.status(200).json(response.data);
   } catch (error) {
     log_error.error(`EDS_VTPEDIDO: valida_articulos : ${error} `);

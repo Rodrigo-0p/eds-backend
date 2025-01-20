@@ -6,6 +6,7 @@ exports.main = async (req, res, next) => {
   let { COD_EMPRESA     = '', COD_SUCURSAL    = '', TIP_COMP        = '', 
         NRO_COMPROBANTE = '', TIP_COMPROBANTE = '', FEC_COMPROBANTE = '', 
         COD_CLIENTE     = ''} = req.body;
+    
   try {
     let sql = `select EDS_CCCANCAJ.listar_cabecera( :COD_EMPRESA
                                                   , :COD_SUCURSAL

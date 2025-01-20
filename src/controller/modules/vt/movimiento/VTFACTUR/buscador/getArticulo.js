@@ -5,18 +5,18 @@ const {log_error} = require('../../../../../../utils/logger');
 
 exports.main = async (req, res, next) => {
   
-  var cod_empresa  = req.body.cod_empresa;
-  var valor        = req.body.valor;
+  var {cod_empresa = '' } = req.body;
+  var valor               = req.body.valor;
 
   if(valor !== 'null' && valor !== undefined){
     valor = '%' +  valor.replace(' ', '%') + '%';
   }
   
   try {
-     var sql =`  select a.cod_articulo,
-                        a.descripcion desc_articulo,    
-                        inv_otros.lote_defecto nro_lote,
-                        a.rowid id
+     var sql =`  select a.cod_articulo
+                      , a.descripcion desc_articulo
+                      --, inv_otros.lote_defecto nro_lote
+                      , a.rowid id
                    from st_articulos a
                   where a.cod_empresa =:cod_empresa 
                     and a.estado      = 'A'

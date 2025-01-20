@@ -5,12 +5,10 @@ const moment = require('moment');
 exports.main = async (req, res, next)  => {
   const {COD_EMPRESA, SALDO_ANT, IND_REPARTO, CLIENTE_OCASIONAL, COD_SUCURSAL }	= req.body;
   let FEC_COMPROBANTE =  moment(req.body.FEC_COMPROBANTE.slice(0,10)).format('DD/MM/YYYY'); 
-  const COD_CLIENTE = req.body.valor ? req.body.valor : ''
-  FEC_COMPROBANTE = null;
-  let content 	= [{COD_EMPRESA,FEC_COMPROBANTE,SALDO_ANT, IND_REPARTO, CLIENTE_OCASIONAL, COD_SUCURSAL, COD_CLIENTE}];
+  const COD_CLIENTE   = req.body.valor ? req.body.valor : ''
+  FEC_COMPROBANTE     = null;
+  let content 	      = [{COD_EMPRESA,FEC_COMPROBANTE,SALDO_ANT, IND_REPARTO, CLIENTE_OCASIONAL, COD_SUCURSAL, COD_CLIENTE}];
   
-  console.log( content );
-
   let in_params = content.map( item => { return _.keys(item) });
   var valida 	  = [{
     campo	      : 'COD_CLIENTE',

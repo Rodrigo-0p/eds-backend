@@ -4,6 +4,7 @@ const crypto      = require("../../../../../../utils/crypto");
 const {log_error} = require('../../../../../../utils/logger');
 exports.main = async (req, res, next)  => {
 	const { cod_empresa, cod_cliente, cod_subcliente, cod_vendedor } = req.body;
+	
 	const { valor } = req.body;
 	try {
 		var sql =   `  select c.cod_lista_precio, c.descripcion desc_lista_precio
@@ -29,7 +30,9 @@ exports.main = async (req, res, next)  => {
 									 where ( c.cod_lista_precio like '%'||:valor||'%' or upper( c.descripcion) like '%'||upper(:valor)||'%' or :valor = 'null')
 	                 group by descripcion, cod_lista_precio 
 								`;
-		var data = {cod_empresa, cod_cliente, cod_subcliente, cod_vendedor, valor};
+		var data = {cod_empresa, cod_cliente, cod_subcliente, cod_vendedor, valor}; 
+		console.log(req.body)
+		
 		const response = await db.Open(sql,data,true,req.headers.authuser,await crypto.decrypt(req.headers.authpass));
 		res.status(200).json(response);
 	} catch (e) {

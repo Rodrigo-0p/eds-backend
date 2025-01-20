@@ -6,6 +6,8 @@ const tableData           = require('./tableDate');
 const { generate_update } = require('../../../../../utility/generate_update'  );
 const { generate_insert } = require('../../../../../utility/generate_insert'  );
 const { generate_delete } = require('../../../../../utility/generate_delete'  );
+const { validateBooleanFunction } = require('../../../../../utils/validate'   );
+
 exports.getNroComp = async (req, res, next) => {
   let { cod_empresa, tip_comprobante, ser_comprobante}     = req.params;
   try {
@@ -48,71 +50,77 @@ exports.main = async(req, res, next)=>{
   var direccion_ip = ip.replace("::ffff:","");
   var cod_usuario  = content.AditionalData[0].cod_usuario;
   var cod_empresa  = content.AditionalData[0].cod_empresa;
-  var v_band       = false;
 
-  //  VALIDA CAB
-  // var VALIDA_CAB = [
-  //   {
-  //     campo			 : 'COD_SUCURSAL',
-  //     paquete		 : 'EDS_STENVIO.',
-  //     funcion		 : 'VALIDA_SUCURSAL',			
-  //     in_params  : ['COD_EMPRESA','COD_SUCURSAL'],
-  //     out_params : ['DESC_SUCURSAL']  ,
-  //   },{
-  //     campo			 : 'COD_MOTIVO',
-  //     paquete		 : 'EDS_STENVIO.',
-  //     funcion		 : 'VALIDA_MOTIVOS',			
-  //     in_params  : ['COD_EMPRESA','COD_SUCURSAL','COD_MOTIVO'],
-  //     out_params : ['DESC_MOTIVO'],
-  //   }
-  // ]
+  let datosInserCab  = "";
+  let datosUpdatCab  = "";
+  let deleteCab      = "";
+  if(content.updateInserData.length > 0 || content.delete_cab.length > 0){
 
-  // if(content.exitInsertedBand){
-  //   var result = await validateBooleanFunction(content.updateInserData, VALIDA_CAB, req)
-  //   if(result.valor){
-  //     v_mensaje = {'ret': 0,'p_mensaje':result.p_mensaje}
-  //     v_band    = true
-  //   }
-  // }
+  if(content.exitInsertedBand){
 
-  //  VALIDA DETALLE
-  // var VALIDA_DET = [{
-  //   campo			 : 'COD_ARTICULO'  ,
-  //   paquete		 : 'EDS_STENVIO.' ,
-  //   funcion		 : 'VALIDA_ARTICULO',			
-  //   in_params  : ['COD_EMPRESA','COD_SUCURSAL','COD_ARTICULO'],
-  //   out_params : ['DESC_ARTICULO','COSTO_ULTIMO','COD_UNIDAD_MEDIDA','NRO_LOTE','FEC_VENCIMIENTO'],
-  //   out_type   : {'COSTO_ULTIMO':'NUMBER','FEC_VENCIMIENTO':'DATE'}
-  // }]
+    var VALIDA_CAB = [
+      {
+        campo			 : 'COD_SUCURSAL',
+        paquete		 : 'EDS_STENVIO.',
+        funcion		 : 'VALIDA_SUCURSAL',			
+        in_params  : ['COD_EMPRESA','COD_SUCURSAL'],
+        out_params : ['DESC_SUCURSAL']  ,
+      }
+      // ,{
+      //   campo			 : 'COD_MOTIVO',
+      //   paquete		 : 'EDS_STENVIO.',
+      //   funcion		 : 'VALIDA_MOTIVOS',			
+      //   in_params  : ['COD_EMPRESA','COD_SUCURSAL','COD_MOTIVO'],
+      //   out_params : ['DESC_MOTIVO'],
+      // }
+    ]  
+    var result = await validateBooleanFunction(content.updateInserData, VALIDA_CAB, req)
+    if(result.valor){
+      res.json({'ret': 0,'p_mensaje':result.p_mensaje});
+      return
+    }
+  }
 
-  // if(content.exitInsertedBand){
-  //   var result = await validateBooleanFunction(content.updateInserDataDet, VALIDA_DET, req)
-  //   if(result.valor){
-  //     v_mensaje = {'ret': 0,'p_mensaje':result.p_mensaje}
-  //     v_band    = true
-  //   }
-  // }
-
-  // // ||============================================= RETORNA, SI HAY VALIDA QUE NO CORRESPONDA   ============================== ||
-  // if(v_band){
-  //  res.json(v_mensaje);
-  //  return
-  // }
-
-  // CAB
-  let NameTableCab   = 'VT_PEDIDOS_CABECERA';
-	let tableCab       = tableData.find( item => item.table === NameTableCab);
-  let datosInserCab  = await generate_insert(NameTableCab, content.updateInserData, {COD_EMPRESA:cod_empresa,FEC_ALTA:'sysdate'},tableCab.column);
-  let datosUpdatCab  = await generate_update(NameTableCab, content.updateInserData, content.aux_updateInserData,{},{FEC_MODIF:'sysdate',COD_USU_MODIF:`${cod_usuario}`}, tableCab.column,  tableCab.pk);
-  let deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtpedido' }, tableCab.column,  tableCab.pk); 
-
+    // CAB
+    let NameTableCab   = 'VT_PEDIDOS_CABECERA';
+    let tableCab       = tableData.find( item => item.table === NameTableCab);
+    datosInserCab  = await generate_insert(NameTableCab, content.updateInserData, {COD_EMPRESA:cod_empresa,FEC_ALTA:'sysdate'},tableCab.column);
+    datosUpdatCab  = await generate_update(NameTableCab, content.updateInserData, content.aux_updateInserData,{},{FEC_MODIF:'sysdate',COD_USU_MODIF:`${cod_usuario}`}, tableCab.column,  tableCab.pk);
+    deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtpedido' }, tableCab.column,  tableCab.pk); 
+  }
+  
   // DET
-  let NameTableDet   = 'VT_PEDIDOS_DETALLE';
-	let tableDet       = tableData.find( item => item.table === NameTableDet);
-  let datosInserDet  = await generate_insert(NameTableDet, content.updateInserDataDet, {COD_EMPRESA:cod_empresa},tableDet.column);
-  let datosUpdatDet  = await generate_update(NameTableDet, content.updateInserDataDet, content.aux_updateInserDataDet,{},{}, tableDet.column,  tableDet.pk);
-  let deleteDet      = await generate_delete(NameTableDet, content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtpedido' }, tableDet.column,  tableDet.pk); 
+  let datosInserDet  = "";
+  let datosUpdatDet  = "";
+  let deleteDet      = "";
 
+  if(content.updateInserDataDet.length > 0 || content.delete_Det.length > 0){
+
+    if(content.exitInsertedBand){
+
+      var VALIDA_DET = [{
+        campo			 : 'COD_ARTICULO'  ,
+        paquete		 : 'EDS_STENVIO.' ,
+        funcion		 : 'VALIDA_ARTICULO',			
+        in_params  : ['COD_EMPRESA','COD_SUCURSAL','COD_ARTICULO'],
+        out_params : ['DESC_ARTICULO','COSTO_ULTIMO','COD_UNIDAD_MEDIDA','NRO_LOTE','FEC_VENCIMIENTO'],
+        out_type   : {'COSTO_ULTIMO':'NUMBER','FEC_VENCIMIENTO':'DATE'}
+      }]
+
+      var result = await validateBooleanFunction(content.updateInserDataDet, VALIDA_DET, req)
+      if(result.valor){
+        res.json({'ret': 0,'p_mensaje':result.p_mensaje});
+        return
+      }
+    }
+
+    let NameTableDet   = 'VT_PEDIDOS_DETALLE';
+    let tableDet       = tableData.find( item => item.table === NameTableDet);
+    datosInserDet  = await generate_insert(NameTableDet, content.updateInserDataDet, {COD_EMPRESA:cod_empresa},tableDet.column);
+    datosUpdatDet  = await generate_update(NameTableDet, content.updateInserDataDet, content.aux_updateInserDataDet,{},{}, tableDet.column,  tableDet.pk);
+    deleteDet      = await generate_delete(NameTableDet, content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtpedido' }, tableDet.column,  tableDet.pk);   
+  }
+  
   try {
   var sql =   `
           BEGIN

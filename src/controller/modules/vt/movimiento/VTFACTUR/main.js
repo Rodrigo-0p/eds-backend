@@ -109,14 +109,18 @@ exports.main = async(req, res, next)=>{
 	let tableCab       = tableData.find( item => item.table === NameTableCab);
   let datosInserCab  = await generate_insert(NameTableCab, content.updateInserData, {COD_EMPRESA:cod_empresa,FEC_ALTA:'sysdate'},tableCab.column);
   let datosUpdatCab  = await generate_update(NameTableCab, content.updateInserData, content.aux_updateInserData,{},{FEC_MODIF:'sysdate',COD_USU_MODIF:`${cod_usuario}`}, tableCab.column,  tableCab.pk);
-  let deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_stenvio' }, tableCab.column,  tableCab.pk); 
+  let deleteCab      = await generate_delete(NameTableCab, content.delete_cab,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtfactur' }, tableCab.column,  tableCab.pk); 
 
   // DET
   let NameTableDet   = 'VT_COMPROBANTES_DETALLE';
 	let tableDet       = tableData.find( item => item.table === NameTableDet);
   let datosInserDet  = await generate_insert(NameTableDet, content.updateInserDataDet, {COD_EMPRESA:cod_empresa},tableDet.column);
   let datosUpdatDet  = await generate_update(NameTableDet, content.updateInserDataDet, content.aux_updateInserDataDet,{},{}, tableDet.column,  tableDet.pk);
-  let deleteDet      = await generate_delete(NameTableDet, content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'ST', paquete:'eds_stenvio' }, tableDet.column,  tableDet.pk); 
+  let deleteDet      = await generate_delete(NameTableDet, content.delete_Det,{ cod_empresa, cod_usuario, direccion_ip, modulo:'VT', paquete:'eds_vtfactur' }, tableDet.column,  tableDet.pk); 
+
+
+  console.log( 'Cabecera ---> ', datosInserCab );
+  console.log( 'Detalle  ---> ', datosInserDet );
 
   try {
   var sql =   `
